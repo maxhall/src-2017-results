@@ -1,0 +1,87 @@
+<section>
+  <h2>{{ blogData.copy[0].blogtitle }}</h2>
+  <div>{{{ blogData.copy[0].blogstandfirst }}}</div>
+  <div id="help" class="stream-container">
+    {{#each visiblePosts as post @body}}
+      <article class="blogPost" transition:fade>
+        <h3>{{post.heading}}</h3>
+        <p>{{post.meta}}</p>
+        {{#if '1'===post.highlight}}
+          <h2>highlight</h2>
+        {{/if}}
+        <p></p>
+        {{{post.body}}}
+      </article>
+    {{/each}}
+    <button on:click='loadMorePosts(visiblePosts, publishedPosts)'>Load more posts</button>
+  </div>
+  <div class="scroll-to-top">
+    <!-- Tapping scrolls to top, should indicate number of new posts -->
+    <button on:click='scrollToTop()'>SCROLL TO TOP</button>
+  </div>
+
+</section>
+
+<style>
+  section {
+    flex: 1;
+    background-color: grey;
+    padding: 1rem;
+  }
+
+  .blogPost {
+    background-color: #eeeeff;
+    margin: 1rem 0;
+  }
+
+  .highlight {
+    background-color: red;
+  }
+</style>
+
+<script>
+  /*
+   * TODO:
+   * Add transitions for the blog posts
+   * Make sure it doesn't remove the oldest of the 20 when a new one comes in live
+   * Test all permutations of what happens when there is no or incorrect spreadsheet content
+   */
+
+  import { fade } from 'svelte-transitions';
+
+  export default {
+    computed: {
+      publishedPosts: blogData => {
+        const withoutUnpublished = blogData.blog.filter((post) => {
+          return '1' === post.published;
+        });
+        const reverseOrder = withoutUnpublished.reverse();
+        return reverseOrder;
+      },
+      // I wonder if this will reduce the number back to twenty on every update
+      // I.e. when we receive an update do we want to check the number of visiblePosts
+      // and do make visible that number + 1 ??
+      visiblePosts: publishedPosts => {
+        // return the most recent 20 posts
+        return publishedPosts.slice(1, 21);
+      }
+    },
+
+    methods: {
+      loadMorePosts(visiblePosts, publishedPosts) {
+        const newNumberOfPosts = visiblePosts.length + 11;
+        const morePosts = publishedPosts.slice(1, newNumberOfPosts);
+        this.set({ visiblePosts: morePosts });
+      },
+      scrollToTop() {
+        console.log('scroll me up scotty');
+        // TODO: This just scrolls the whole page to the top, fix it
+        window.scrollTo(50, 0);
+      },
+    },
+
+    transitions: {
+      fade,
+    },
+  }
+</script>
