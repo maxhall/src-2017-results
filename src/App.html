@@ -1,0 +1,51 @@
+<Header title='whaddup'/>
+<!-- Only show the TabBar on mobile -->
+<!--<TabBar />-->
+{{ collatedResults.council[0].faction }}
+<article>
+	<Results resultsData='{{resultsData}}'/>
+	<Blog blogData='{{blogData}}'/>
+</article>
+<Footer />
+
+<style>
+	article {
+		display: flex;
+	}
+</style>
+
+<script>
+	import TabBar from './components/TabBar.html';
+	import Footer from './components/Footer.html';
+	import Blog from './components/Blog.html';
+	import Header from './components/Header.html';
+	import Results from './components/Results.html';
+
+	export default {
+    components: {
+			Blog,
+			Results,
+			Header,
+			TabBar,
+			Footer,
+		},
+
+		computed: {
+			collatedResults: results => {
+				const restructuredResults = {};
+				restructuredResults['council'] = results.council;
+				restructuredResults['honi'] = results.honi;
+				restructuredResults['nus'] = results.nus;
+				restructuredResults['pres'] = results.pres;
+				restructuredResults['copy'] = results.copy;
+				return restructuredResults;
+			},
+			blogData: results => {
+				const restructuredData = {};
+				restructuredData['blog'] = results.blog;
+				restructuredData['copy'] = results.copy;
+				return restructuredData;
+			}
+		}
+  };
+</script>

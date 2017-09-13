@@ -1,0 +1,27 @@
+<section>
+  <h2>Council</h2>
+
+  <CouncilBoxes />
+
+  <div class="analysis">{{{analysis}}}</div>
+
+  <CouncilTable />
+</section>
+
+<style>
+  section {
+    width: 48%;
+  }
+</style>
+
+<script>
+  import CouncilBoxes from './CouncilBoxes.html';
+  import CouncilTable from './CouncilTable.html';
+
+  export default {
+    components: {
+      CouncilBoxes,
+      CouncilTable,
+    }
+  }
+</script>

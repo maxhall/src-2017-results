@@ -1,0 +1,35 @@
+<section>
+  <President />
+  <Honi />
+  <Council />
+  <NUS />
+</section>
+
+<style>
+  section {
+    flex: 3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  section > section {
+    background-color: red;
+  }
+</style>
+
+<script>
+  import Council from './Council.html';
+  import NUS from './NUS.html';
+  import President from './President.html';
+  import Honi from './Honi.html';
+
+  export default {
+    components: {
+      Council,
+      NUS,
+      President,
+      Honi,
+    }
+  }
+</script>
