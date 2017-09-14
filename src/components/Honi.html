@@ -5,8 +5,8 @@
 
   <div class="analysis">{{{collatedResults.copy[0].honianalysis}}}</div>
 
-  <HoniTable tableData='tableData'/>
-  <button on:click='logTableData(tableData)'>log table data</button>
+  <HoniTable tableData='{{tableData}}' collatedResults='{{collatedResults}}'/>
+
 </section>
 
 <style>
@@ -40,11 +40,5 @@
         return collatedResults.honi[10].heat;
       }
     },
-
-    methods: {
-      logTableData: function (tableData) {
-        console.log(tableData);
-      }
-    }
   }
 </script>

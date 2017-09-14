@@ -1,1 +1,36 @@
-<p>NUS Table</p>
+<table>
+  <thead>
+    <th>Candidate</th>
+    <th>Faction</th>
+    <th>Ticket</th>
+    <th>Votes</th>
+    <th>Elected</th>
+  </thead>
+  {{#each nusTableData as row }}
+    <tr>
+        <td>{{row.candidate}}</td>
+        <td>{{row.faction}}</td>
+        <td>{{row.ticket}}</td>
+        <td>{{row.votes}}</td>
+        <td>{{row.elected}}</td>
+    </tr>
+  {{/each}}
+</table>
+
+<style>
+  table {
+    width: 100%;
+  }
+</style>
+<script>
+  export default {
+    data () {
+      return {
+
+      }
+    },
+    computed: {
+      nusTableData: collatedResults => collatedResults.nus
+    },
+  }
+</script>

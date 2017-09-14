@@ -1,1 +1,46 @@
-<p>President table.</p>
+<table>
+  <thead>
+    <th>Booth</th>
+    <th>Grant</th>
+    <th>%</th>
+    <th>Pytka</th>
+    <th>%</th>
+    <th>Ma</th>
+    <th>%</th>
+    <th>Informal</th>
+    <th>%</th>
+    <th>Total</th>
+  </thead>
+  {{#each presTableData as row }}
+    <tr>
+        <td>{{row.booth}}</td>
+        <td>{{row.grant}}</td>
+        <td>{{row.grantpercent}}</td>
+        <td>{{row.pytka}}</td>
+        <td>{{row.pytkapercent}}</td>
+        <td>{{row.ma}}</td>
+        <td>{{row.mapercent}}</td>
+        <td>{{row.informal}}</td>
+        <td>{{row.informalpercent}}</td>
+        <td>{{row.total}}</td>
+    </tr>
+  {{/each}}
+</table>
+
+<style>
+  table {
+    width: 100%;
+  }
+</style>
+<script>
+  export default {
+    data () {
+      return {
+
+      }
+    },
+    computed: {
+      presTableData: collatedResults => collatedResults.pres
+    },
+  }
+</script>

@@ -1,5 +1,42 @@
 <table>
-  {{#each tableData as row }}
-    <tr>{{ row.length }}</tr>
+  <thead>
+    <th>Booth</th>
+    <th>Heat</th>
+    <th>%</th>
+    <th>Mint</th>
+    <th>%</th>
+    <th>Informal</th>
+    <th>%</th>
+    <th>Total</th>
+  </thead>
+  {{#each honiTableData as row }}
+    <tr>
+        <td>{{row.booth}}</td>
+        <td>{{row.heat}}</td>
+        <td>{{row.heatpercent}}</td>
+        <td>{{row.mint}}</td>
+        <td>{{row.mintpercent}}</td>
+        <td>{{row.informal}}</td>
+        <td>{{row.informalpercent}}</td>
+        <td>{{row.total}}</td>
+    </tr>
   {{/each}}
 </table>
+
+<style>
+  table {
+    width: 100%;
+  }
+</style>
+<script>
+  export default {
+    data () {
+      return {
+
+      }
+    },
+    computed: {
+      honiTableData: collatedResults => collatedResults.honi
+    },
+  }
+</script>
