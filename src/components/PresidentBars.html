@@ -20,6 +20,9 @@
       </tr>
     {{/each}}
   </table>
+  <span class="turnout">
+    {{collatedResults.copy[0].presboothscounted}}/{{collatedResults.copy[0].numberofbooths}} polling stations counted. {{ collatedResults.copy[0].presturnout * 100 }}% of students voted.
+  </span>
 </div>
 
 <style>

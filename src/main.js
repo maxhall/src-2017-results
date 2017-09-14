@@ -21,6 +21,7 @@ const appData = {
 		],
 		copy: [{
 			title: 'default',
+			displayresults: '0',
 		}],
 		council: [
 			{ faction: 'surprise' }

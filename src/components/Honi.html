@@ -1,7 +1,13 @@
 <section>
   <h2>Honi</h2>
 
-  <HoniBars mintTotal='{{mintTotal}}' heatTotal='{{heatTotal}}'/>
+  <HoniBars
+    mintTotal='{{mintTotal}}'
+    heatTotal='{{heatTotal}}'
+    numberOfBooths='{{collatedResults.copy[0].numberofbooths}}'
+    honiBoothsCounted='{{collatedResults.copy[0].honiboothscounted}}'
+    honiTurnout='{{collatedResults.copy[0].honiturnout}}'
+  />
 
   <div class="analysis">{{{collatedResults.copy[0].honianalysis}}}</div>
 
