@@ -3,7 +3,7 @@
 
   <NUSBoxes />
 
-  <p>Analysis paragraphs</p>
+  <div class="analysis">{{{collatedResults.copy[0].nusanalysis}}}</div>
 
   <NUSTable />
 </section>
@@ -22,6 +22,13 @@
     components: {
       NUSBoxes,
       NUSTable,
+    },
+
+    computed: {
+      tableData: collatedResults => {
+        // Crunch the data down into an array of arrays for easy display
+        return collatedResults;
+      }
     }
   }
 </script>

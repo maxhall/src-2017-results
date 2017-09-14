@@ -1,11 +1,12 @@
 <section>
   <h2>Honi</h2>
 
-  <HoniBars />
+  <HoniBars mintTotal='{{mintTotal}}' heatTotal='{{heatTotal}}'/>
 
-  <p>Analysis para</p>
+  <div class="analysis">{{{collatedResults.copy[0].honianalysis}}}</div>
 
-  <HoniTable />
+  <HoniTable tableData='tableData'/>
+  <button on:click='logTableData(tableData)'>log table data</button>
 </section>
 
 <style>
@@ -22,6 +23,28 @@
     components: {
       HoniBars,
       HoniTable,
+    },
+
+    computed: {
+      tableData: collatedResults => {
+        const rowArray = collatedResults.honi.map(row => {
+          const cellArray = Object.keys(row).map(key => row[key]);
+          return cellArray;
+        });
+        return rowArray;
+      },
+      mintTotal: collatedResults => {
+        return collatedResults.honi[10].mint;
+      },
+      heatTotal: collatedResults => {
+        return collatedResults.honi[10].heat;
+      }
+    },
+
+    methods: {
+      logTableData: function (tableData) {
+        console.log(tableData);
+      }
     }
   }
 </script>

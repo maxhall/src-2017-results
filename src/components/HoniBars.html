@@ -1,1 +1,78 @@
-<p>Honi bars</p>
+<div>
+  <div class="details">
+    <div class="details-right">
+      <span class="name">Mint</span>
+      <span class="percentage">{{ mintPercentage }}</span>
+    </div>
+    <div class="details-left">
+      <span class="name">Heat</span>
+      <span class="percentage">{{ heatPercentage }}</span>
+    </div>
+  </div>
+  <div class="bars">
+    <span class="heat-bar"></span>
+    <span class="mint-bar" style="width:{{mintPercentage}}%"></span>
+    <span class="middle-mark"></span>
+  </div>
+  <span class="underbar">{{ honiBoothsCounted }}/10 polling stations counted. {{ honiTurnout }}% of students voted.</span>
+</div>
+
+<style>
+  .details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .details-right {
+    text-align: right;
+  }
+
+  .bars {
+    display: inline;
+    position: absolute;
+  }
+  .heat-bar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: red;
+    height: 20px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .mint-bar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: green;
+    height: 20px;
+    margin: 0;
+  }
+  .middle-mark {
+    display: inline;
+    position: relative;
+    background-color: black;
+    height: 20px;
+    width: 2px;
+    margin: 0 auto;
+  }
+</style>
+<script>
+  export default {
+    computed: {
+      totalCountedVotes: (mintTotal, heatTotal) => {
+        return Number(mintTotal) + Number(heatTotal);
+      },
+      mintPercentage: (mintTotal, totalCountedVotes) => {
+        const mintPercentage = mintTotal / totalCountedVotes;
+        return mintPercentage.toFixed(2) * 100;
+      },
+      heatPercentage: (heatTotal, totalCountedVotes) => {
+        const heatPercentage = heatTotal / totalCountedVotes;
+        return heatPercentage.toFixed(2) * 100;
+      }
+    }
+  }
+</script>
