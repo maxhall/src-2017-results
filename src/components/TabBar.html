@@ -1,5 +1,27 @@
 <nav>
-  <hr>
-  <p>Tab bar</p>
-  <hr>
+  <span on:click='toggleTab("results")'>Results</span>
+  <span on:click='toggleTab("analysis", currentPane)'>Analysis</span>
 </nav>
+{{#if 'results'===currentPane}}
+  <Results collatedResults='{{collatedResults}}'/>
+{{else}}
+  <Blog blogData='{{blogData}}'/>
+{{/if}}
+
+<script>
+  import Results from './Results.html';
+  import Blog from './Blog.html';
+
+  export default {
+    components: {
+      Blog,
+      Results,
+    },
+
+    methods: {
+      toggleTab: function (paneToShow) {
+        this.set({currentPane: paneToShow});
+      },
+    },
+  }
+</script>

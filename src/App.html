@@ -1,10 +1,22 @@
-<!--<Header title='whaddup'/>-->
-<!-- Only show the TabBar on mobile -->
-<!--<TabBar />-->
-<article>
-	<Results collatedResults='{{collatedResults}}'/>
-	<Blog blogData='{{blogData}}'/>
-</article>
+<:Window bind:innerWidth='appWidth'/>
+
+<Header headerStandfirst='{{collatedResults.copy[0].headerstandfirst}}'/>
+{{#if '1'===displayResults }}
+	{{#if appWidth < 500 }}
+		<TabBar
+			currentPane='results'
+			collatedResults='{{collatedResults}}'
+			blogData='{{blogData}}'
+		/>
+	{{else}}
+		<article>
+			<Results collatedResults='{{collatedResults}}'/>
+			<Blog blogData='{{blogData}}'/>
+		</article>
+	{{/if}}
+{{else}}
+	<BlogOnlyWrapper blogData='{{blogData}}' />
+{{/if}}
 <Footer />
 
 <style>
@@ -17,12 +29,14 @@
 	import TabBar from './components/TabBar.html';
 	import Footer from './components/Footer.html';
 	import Blog from './components/Blog.html';
+	import BlogOnlyWrapper from './components/BlogOnlyWrapper.html';
 	import Header from './components/Header.html';
 	import Results from './components/Results.html';
 
 	export default {
     components: {
 			Blog,
+			BlogOnlyWrapper,
 			Results,
 			Header,
 			TabBar,

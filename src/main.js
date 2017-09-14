@@ -8,6 +8,7 @@ import io from 'socket.io-client';
  * You might want to remove the socket dependency after this
  */
 const appData = {
+	displayResults: '1',
 	results: {
 		blog: [
 			{
@@ -59,7 +60,28 @@ const appData = {
 			},
 		],
 		nus: [],
-		pres: []
+		pres: [
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{
+				pytka: '1',
+				pytkapercent: '0.5',
+				grant: '1',
+				grantpercent: '0.5',
+				ma: '1',
+				maapercent: '0.5',
+				informal: '1',
+				informalpercent: '0.5',
+			},
+		]
 	},
 };
 
