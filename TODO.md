@@ -1,13 +1,13 @@
 # TODO
 
-* Implement modes of the app (blog and blog+results), and the reshuffle of components at the mobile breakpoint (included tabbed browsing). Use the window handler for this.
-* Add to spreadsheet/copy: displayresults
-* Core results display for each election
-* Redraw the SRC '17 svg
+* Council boxes
+* NUS boxes
+* Add turnout to Council and NUS
+* Show/hide the tables
+* Add pym.js
 * Style everything
 
-* Two modes: Blog-only and blog+results
-* Two views: mobile and desktop
+Test structure for components:
 
 Header
 If !displayResults
