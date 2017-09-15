@@ -3,34 +3,39 @@
   <div>{{{ blogData.copy[0].blogstandfirst }}}</div>
   <div id="help" class="stream-container">
     {{#each visiblePosts as post @body}}
+      {{#if '1'===post.highlight}}
+        <span class="highlight-bar"></span>
+      {{/if}}
       <article class="blogPost" transition:fade>
         <h3>{{post.heading}}</h3>
         <p>{{post.meta}}</p>
-        {{#if '1'===post.highlight}}
-          <h2>highlight</h2>
-        {{/if}}
-        <p></p>
         {{{post.body}}}
       </article>
     {{/each}}
     <button on:click='loadMorePosts(visiblePosts, publishedPosts)'>Load more posts</button>
   </div>
-  <div class="scroll-to-top">
-    <!-- Tapping scrolls to top, should indicate number of new posts -->
-    <button on:click='scrollToTop()'>SCROLL TO TOP</button>
-  </div>
-
 </section>
 
 <style>
   section {
     flex: 1;
-    background-color: grey;
+    background-color: #eeeeee;
     padding: 1rem;
   }
 
+  .highlight-bar {
+    height: 2px;
+    width: 100%;
+    display: block;
+    position: relative;
+    background-color: red;
+  }
+  .stream-container {
+    overflow-y: scroll;
+    height: 100vh;
+  }
   .blogPost {
-    background-color: #eeeeff;
+    background-color: white;
     margin: 1rem 0;
   }
 
