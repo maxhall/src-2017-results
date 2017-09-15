@@ -1,7 +1,10 @@
 <section>
   <h2>Council</h2>
-
-  <CouncilBoxes />
+  
+  <CouncilBoxes
+    councilSeatArray='{{councilSeatArray}}'
+    councilTurnout='{{collatedResults.copy[0].councilturnout}}'
+  />
 
   <div class="analysis">{{{collatedResults.copy[0].councilanalysis}}}</div>
 
@@ -22,6 +25,41 @@
     components: {
       CouncilBoxes,
       CouncilTable,
+    },
+
+    computed: {
+      councilSeatArray: collatedResults => {
+        // Array of elected reps who are likely to be in the majority
+        const electedMajorityCouncillors = collatedResults.council.filter((councillor) => {
+          if ('1'===councillor.elected && '1'===councillor.inlikelymajority) {
+            return true;
+          }
+        });
+
+        // Array of elected reps likely to be in the minority
+        const electedMinorityCouncillors = collatedResults.council.filter((councillor) => {
+          if ('1'===councillor.elected && ''===councillor.inlikelymajority) {
+            return true;
+          }
+        });
+
+        // Array of zeroz for the unfilled seats
+        const emptySeats = 33 - Number(electedMinorityCouncillors.length) - Number(electedMajorityCouncillors.length);
+        const fillSeats = Array(emptySeats).fill(0);
+
+        const majorityAndEmpty = electedMajorityCouncillors.concat(fillSeats);
+        const allSeats = majorityAndEmpty.concat(electedMinorityCouncillors);
+
+        const councilSeatArray = allSeats.map((seat) => {
+          if (seat===0) {
+            return collatedResults.colors['Blank'];
+          } else {
+            return collatedResults.colors[seat.faction]
+          }
+        });
+
+        return councilSeatArray;
+      },
     }
   }
 </script>

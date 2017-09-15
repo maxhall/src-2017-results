@@ -8,7 +8,18 @@ import io from 'socket.io-client';
  * You might want to remove the socket dependency after this
  */
 const appData = {
-	displayResults: '1',
+	colors: {
+		'NLS': '#753da6',
+		'Grassroots': '#008938',
+		'SLS': '#235b70',
+		'Mod Libs': '#969696',
+		'Liberals': '#0873a9',
+		'Unity': '#de2b33',
+		'Independent': '#fff000',
+		'Socialist Alternative': '#d98a01',
+		'Solidarity': '#ff00f0',
+		'Blank': '#eeeeee',
+	},
 	results: {
 		blog: [
 			{
@@ -21,7 +32,7 @@ const appData = {
 		],
 		copy: [{
 			title: 'default',
-			displayresults: '0',
+			displayresults: '1',
 		}],
 		council: [
 			{ faction: 'surprise' }

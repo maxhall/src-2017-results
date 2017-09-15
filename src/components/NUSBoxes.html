@@ -1,1 +1,32 @@
-<p>NUS boxes</p>
+<div>
+  <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 1000 121.4">
+    <path ref:seat7 d="M878.5 0h121.4v121.4H878.5z" class="seat-7"/>
+    <path ref:seat6 d="M732.1 0h121.4v121.4H732.1z" class="seat-6"/>
+    <path ref:seat5 d="M585.7 0h121.4v121.4H585.7z" class="seat-5"/>
+    <path ref:seat4 d="M439.3 0h121.4v121.4H439.3z" class="seat-4"/>
+    <path ref:seat3 d="M292.8 0h121.4v121.4H292.8z" class="seat-3"/>
+    <path ref:seat2 d="M146.4 0h121.4v121.4H146.4z" class="seat-2"/>
+    <path ref:seat1 d="M0 0h121.4v121.4H0z" class="seat-1"/>
+  </svg>
+  <span class="turnout">{{ nusTurnout * 100 }}% of students voted.</span>
+</div>
+
+<style media="screen">
+</style>
+
+<script>
+  export default {
+    oncreate () {
+      this.observe('nusSeatArray', nusSeatArray => {
+        nusSeatArray.forEach((seatColor, index) => {
+          const seatNumber = index + 1;
+          const constructedRef = 'seat' + seatNumber;
+          const seatElement = this.refs[constructedRef];
+          if (seatElement) {
+            seatElement.style.fill = seatColor;
+          }
+        });
+      });
+    },
+  }
+</script>

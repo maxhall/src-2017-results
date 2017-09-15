@@ -44,13 +44,14 @@
 		},
 
 		computed: {
-			collatedResults: results => {
+			collatedResults: (results, colors) => {
 				const restructuredResults = {};
 				restructuredResults['council'] = results.council;
 				restructuredResults['honi'] = results.honi;
 				restructuredResults['nus'] = results.nus;
 				restructuredResults['pres'] = results.pres;
 				restructuredResults['copy'] = results.copy;
+				restructuredResults['colors'] = colors;
 				return restructuredResults;
 			},
 			blogData: results => {

@@ -1,7 +1,10 @@
 <section>
   <h2>NUS</h2>
 
-  <NUSBoxes />
+  <NUSBoxes
+    nusSeatArray='{{nusSeatArray}}'
+    nusTurnout='{{collatedResults.copy[0].nusturnout}}'
+  />
 
   <div class="analysis">{{{collatedResults.copy[0].nusanalysis}}}</div>
 
@@ -28,6 +31,23 @@
       tableData: collatedResults => {
         // Crunch the data down into an array of arrays for easy display
         return collatedResults;
+      },
+
+      nusSeatArray: collatedResults => {
+        const electedDelegates = collatedResults.nus.filter(candidate => {
+          return candidate.elected==='1';
+        });
+        const numberOfEmptySeats = 7 - electedDelegates.length;
+        const fillSeats = Array(numberOfEmptySeats).fill(0);
+        const allSeats = electedDelegates.concat(fillSeats);
+        const nusSeatArray = allSeats.map((seat) => {
+          if (seat===0) {
+            return collatedResults.colors['Blank'];
+          } else {
+            return collatedResults.colors[seat.faction]
+          }
+        });
+        return nusSeatArray;
       }
     }
   }
