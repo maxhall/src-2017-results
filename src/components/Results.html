@@ -1,8 +1,20 @@
 <section>
-  <President collatedResults='{{collatedResults}}'/>
-  <Honi collatedResults='{{collatedResults}}'/>
-  <Council collatedResults='{{collatedResults}}'/>
-  <NUS collatedResults='{{collatedResults}}'/>
+  <President
+    collatedResults='{{collatedResults}}'
+    on:sendTheHeight='extraFire()'
+  />
+  <Honi
+    collatedResults='{{collatedResults}}'
+    on:sendTheHeight='extraFire()'
+  />
+  <Council
+    collatedResults='{{collatedResults}}'
+    on:sendTheHeight='extraFire()'
+  />
+  <NUS
+    collatedResults='{{collatedResults}}'
+    on:sendTheHeight='extraFire()'
+  />
 </section>
 
 <style>
@@ -31,5 +43,11 @@
       President,
       Honi,
     },
+
+    methods: {
+      extraFire: function () {
+        this.fire('sendTheHeight');
+      }
+    }
   }
 </script>

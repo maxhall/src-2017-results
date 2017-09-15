@@ -72,6 +72,7 @@
         const newNumberOfPosts = visiblePosts.length + 11;
         const morePosts = publishedPosts.slice(1, newNumberOfPosts);
         this.set({ visiblePosts: morePosts });
+        this.fire('sendTheHeight');
       },
       scrollToTop() {
         console.log('scroll me up scotty');

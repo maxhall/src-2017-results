@@ -1,8 +1,11 @@
 # TODO
 
-* Add pym.js
 * Style everything
 * Add analytics
+* Testing:
+  * No data at all
+  * Check embedded links work properly (potentially use PYM's direct parent)
+* Remove logging statements throughout
 
 Test structure for components:
 

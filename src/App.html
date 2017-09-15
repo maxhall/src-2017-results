@@ -7,15 +7,27 @@
 			currentPane='results'
 			collatedResults='{{collatedResults}}'
 			blogData='{{blogData}}'
+			on:sendTheHeight='pymUpdateHeight()'
 		/>
 	{{else}}
 		<article>
-			<Results collatedResults='{{collatedResults}}'/>
-			<Blog blogData='{{blogData}}'/>
+			<Results
+				collatedResults='{{collatedResults}}'
+				on:sendTheHeight='pymUpdateHeight()'
+			/>
+			<Blog
+				blogData='{{blogData}}'
+				on:sendTheHeight='pymUpdateHeight()'
+			/>
 		</article>
 	{{/if}}
 {{else}}
-	<BlogOnlyWrapper blogData='{{blogData}}' />
+	<div class="blog-only-wrapper">
+		<Blog
+			blogData='{{blogData}}'
+			on:sendTheHeight='pymUpdateHeight()'
+		/>
+	</div>
 {{/if}}
 <Footer />
 
@@ -23,24 +35,45 @@
 	article {
 		display: flex;
 	}
+	.blog-only-wrapper {
+		width: 100%;
+		margin: 0.5rem;
+	}
+	@media (min-width: 500px) {
+		.blog-only-wrapper {
+			width: 80%;
+			margin: 0.5rem auto;
+		}
+	}
+	@media (min-width: 900px) {
+		.blog-only-wrapper {
+			width: 50%;
+			margin: 0.5rem auto;
+		}
+	}
 </style>
 
 <script>
+	import pym from 'pym.js';
 	import TabBar from './components/TabBar.html';
 	import Footer from './components/Footer.html';
 	import Blog from './components/Blog.html';
-	import BlogOnlyWrapper from './components/BlogOnlyWrapper.html';
 	import Header from './components/Header.html';
 	import Results from './components/Results.html';
 
 	export default {
     components: {
 			Blog,
-			BlogOnlyWrapper,
 			Results,
 			Header,
 			TabBar,
 			Footer,
+		},
+
+		methods: {
+			pymUpdateHeight: function() {
+				this.fire('sendTheHeight');
+			}
 		},
 
 		computed: {

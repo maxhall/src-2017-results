@@ -3,9 +3,15 @@
   <span on:click='toggleTab("analysis", currentPane)'>Analysis</span>
 </nav>
 {{#if 'results'===currentPane}}
-  <Results collatedResults='{{collatedResults}}'/>
+  <Results
+    collatedResults='{{collatedResults}}'
+    on:sendTheHeight='extraFire()'
+  />
 {{else}}
-  <Blog blogData='{{blogData}}'/>
+  <Blog
+    blogData='{{blogData}}'
+    on:sendTheHeight='extraFire()'
+  />
 {{/if}}
 
 <script>
@@ -18,10 +24,21 @@
       Results,
     },
 
+    //oncreate () {
+//      this.on('sendTheHeight', (sendTheHeight) => {
+				//console.log('Send the height');
+				//this.set({sendTheHeight: false});
+			//});
+    //},
+
     methods: {
       toggleTab: function (paneToShow) {
         this.set({currentPane: paneToShow});
+        this.fire('sendTheHeight');
       },
+      extraFire: function () {
+        this.fire('sendTheHeight');
+      }
     },
   }
 </script>

@@ -69,9 +69,11 @@
         if (displayTable) {
           this.set({displayTable:false});
           toggleElement.textContent = 'Full results';
+          this.fire('sendTheHeight');
         } else {
           this.set({displayTable:true})
           toggleElement.textContent = 'Close full results';
+          this.fire('sendTheHeight');
         }
       }
     },

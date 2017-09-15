@@ -1,6 +1,8 @@
 import App from './App.html';
 import io from 'socket.io-client';
+import pym from 'pym.js';
 
+const pymChild = new pym.Child();
 /*
  * Retirement planning
  * Once the live blog is no longer used create a json file the exports the full
@@ -8,6 +10,7 @@ import io from 'socket.io-client';
  * You might want to remove the socket dependency after this
  */
 const appData = {
+	sendTheHeight: true,
 	colors: {
 		'NLS': '#753da6',
 		'Grassroots': '#008938',
@@ -101,6 +104,11 @@ window.app = new App({
 	target: document.body,
 	// Pass data from the static file in here when the app is retired
 	data: appData,
+});
+
+window.app.on('sendTheHeight', event => {
+	console.log('Height sent');
+	pymChild.sendHeight();
 });
 
 // When any new data is received it's passed down the component chain
