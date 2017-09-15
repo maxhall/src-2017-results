@@ -8,7 +8,12 @@
 
   <div class="analysis">{{{collatedResults.copy[0].nusanalysis}}}</div>
 
-  <NUSTable collatedResults='{{collatedResults}}'/>
+  <div on:click='toggleTableDisplay(displayTable)' class="toggle"><span ref:toggleText>Full results</span></div>
+  {{#if displayTable}}
+    <div transition:slide>
+      <NUSTable collatedResults='{{collatedResults}}'/>
+    </div>
+  {{/if}}
 </section>
 
 <style>
@@ -20,6 +25,7 @@
 <script>
   import NUSBoxes from './NUSBoxes.html';
   import NUSTable from './NUSTable.html';
+  import { slide } from 'svelte-transitions';
 
   export default {
     components: {
@@ -49,6 +55,29 @@
         });
         return nusSeatArray;
       }
-    }
+    },
+
+    data () {
+      return {
+        displayTable: false,
+      }
+    },
+
+    methods: {
+      toggleTableDisplay: function (displayTable) {
+        const toggleElement = this.refs.toggleText;
+        if (displayTable) {
+          this.set({displayTable:false});
+          toggleElement.textContent = 'Full results';
+        } else {
+          this.set({displayTable:true})
+          toggleElement.textContent = 'Close full results';
+        }
+      }
+    },
+
+    transitions: {
+      slide
+    },
   }
 </script>

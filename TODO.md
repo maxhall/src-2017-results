@@ -1,11 +1,8 @@
 # TODO
 
-* Council boxes
-* NUS boxes
-* Add turnout to Council and NUS
-* Show/hide the tables
 * Add pym.js
 * Style everything
+* Add analytics
 
 Test structure for components:
 

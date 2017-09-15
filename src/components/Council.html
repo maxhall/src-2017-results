@@ -1,6 +1,6 @@
 <section>
   <h2>Council</h2>
-  
+
   <CouncilBoxes
     councilSeatArray='{{councilSeatArray}}'
     councilTurnout='{{collatedResults.copy[0].councilturnout}}'
@@ -8,7 +8,12 @@
 
   <div class="analysis">{{{collatedResults.copy[0].councilanalysis}}}</div>
 
-  <CouncilTable collatedResults='{{collatedResults}}'/>
+  <div on:click='toggleTableDisplay(displayTable)' class="toggle"><span ref:toggleText>Full results</span></div>
+  {{#if displayTable}}
+    <div transition:slide>
+      <CouncilTable collatedResults='{{collatedResults}}'/>
+    </div>
+  {{/if}}
 </section>
 
 <style>
@@ -20,6 +25,7 @@
 <script>
   import CouncilBoxes from './CouncilBoxes.html';
   import CouncilTable from './CouncilTable.html';
+  import { slide } from 'svelte-transitions';
 
   export default {
     components: {
@@ -60,6 +66,29 @@
 
         return councilSeatArray;
       },
-    }
+    },
+
+    data () {
+      return {
+        displayTable: false,
+      }
+    },
+
+    methods: {
+      toggleTableDisplay: function (displayTable) {
+        const toggleElement = this.refs.toggleText;
+        if (displayTable) {
+          this.set({displayTable:false});
+          toggleElement.textContent = 'Full results';
+        } else {
+          this.set({displayTable:true})
+          toggleElement.textContent = 'Close full results';
+        }
+      }
+    },
+
+    transitions: {
+      slide
+    },
   }
 </script>

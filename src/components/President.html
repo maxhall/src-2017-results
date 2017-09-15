@@ -5,7 +5,12 @@
 
   <div class="analysis">{{{collatedResults.copy[0].presanalysis}}}</div>
 
-  <PresidentTable collatedResults='{{collatedResults}}'/>
+  <div on:click='toggleTableDisplay(displayTable)' class="toggle"><span ref:toggleText>Full results</span></div>
+  {{#if displayTable}}
+    <div transition:slide>
+      <PresidentTable collatedResults='{{collatedResults}}'/>
+    </div>
+  {{/if}}
 </section>
 
 <style>
@@ -17,11 +22,36 @@
 <script>
   import PresidentBars from './PresidentBars.html';
   import PresidentTable from './PresidentTable.html';
+  import { slide } from 'svelte-transitions';
+
 
   export default {
     components: {
       PresidentBars,
       PresidentTable,
-    }
+    },
+
+    data () {
+      return {
+        displayTable: false,
+      }
+    },
+
+    methods: {
+      toggleTableDisplay: function (displayTable) {
+        const toggleElement = this.refs.toggleText;
+        if (displayTable) {
+          this.set({displayTable:false});
+          toggleElement.textContent = 'Full results';
+        } else {
+          this.set({displayTable:true})
+          toggleElement.textContent = 'Close full results';
+        }
+      }
+    },
+
+    transitions: {
+      slide
+    },
   }
 </script>
