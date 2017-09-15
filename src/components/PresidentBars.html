@@ -8,7 +8,7 @@
     </thead>
     {{#each presSummary as presCandidate}}
       <tr>
-        <td>{{presCandidate.candidate}}</td>
+        <td class="candidate-name">{{presCandidate.candidate}}</td>
         <td>{{presCandidate.faction}}</td>
         <td>{{presCandidate.votes}}</td>
         <td>{{presCandidate.percent}}%</td>
@@ -33,7 +33,9 @@
   thead {
     text-align: left;
   }
-
+  .candidate-name {
+    width: 30%;
+  }
   .bar-wrapper {
     display: table-cell;
     width: 40%;
@@ -57,10 +59,10 @@
         // Bella
         const pytkaSummary = {};
         pytkaSummary['candidate'] = 'Bella Pytka';
-        pytkaSummary['faction'] = 'SLS (Labor Left)';
+        pytkaSummary['faction'] = 'SLS';
         pytkaSummary['votes'] = Number(summaryObject.pytka);
         pytkaSummary['percent'] = Number(summaryObject.pytkapercent) * 100;
-        pytkaSummary['color'] = 'red';
+        pytkaSummary['color'] = collatedResults.colors['SLS'];
         presResultArray.push(pytkaSummary);
 
         // Imogen
@@ -69,16 +71,16 @@
         grantSummary['faction'] = 'Grassroots';
         grantSummary['votes'] = Number(summaryObject.grant);
         grantSummary['percent'] = Number(summaryObject.grantpercent) * 100;
-        grantSummary['color'] = 'green';
+        grantSummary['color'] = collatedResults.colors['Grassroots'];
         presResultArray.push(grantSummary);
 
         // Brendan
         const maSummary = {};
         maSummary['candidate'] = 'Brendan Ma';
-        maSummary['faction'] = 'Liberal';
+        maSummary['faction'] = 'Mod Libs';
         maSummary['votes'] = Number(summaryObject.ma);
         maSummary['percent'] = Number(summaryObject.mapercent) * 100;
-        maSummary['color'] = 'blue';
+        maSummary['color'] = collatedResults.colors['Mod Libs'];
         presResultArray.push(maSummary);
 
         // Informal
@@ -87,7 +89,7 @@
         informalSummary['faction'] = '-';
         informalSummary['votes'] = Number(summaryObject.informal);
         informalSummary['percent'] = Number(summaryObject.informalpercent) * 100;
-        informalSummary['color'] = 'grey';
+        informalSummary['color'] = collatedResults.colors['Blank'];
         presResultArray.push(informalSummary);
 
         // Sort the array by the highest vote count
