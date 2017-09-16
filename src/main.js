@@ -2,7 +2,10 @@ import App from './App.html';
 import io from 'socket.io-client';
 import pym from 'pym.js';
 
-const pymChild = new pym.Child();
+// Set up the responsive iframe
+const pymChild = new pym.Child({ renderCallback: () => { console.log('pym!');}, polling: 500 });
+pymChild.sendHeight();
+
 /*
  * Retirement planning
  * Once the live blog is no longer used create a json file the exports the full
@@ -10,7 +13,6 @@ const pymChild = new pym.Child();
  * You might want to remove the socket dependency after this
  */
 const appData = {
-	sendTheHeight: true,
 	colors: {
 		'NLS': '#753da6',
 		'Grassroots': '#008938',
@@ -107,8 +109,8 @@ window.app = new App({
 });
 
 window.app.on('sendTheHeight', event => {
-	console.log('Height sent');
 	pymChild.sendHeight();
+	console.log('Height not sent');
 });
 
 // When any new data is received it's passed down the component chain
