@@ -3,6 +3,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import buble from 'rollup-plugin-buble';
 import uglify from 'rollup-plugin-uglify';
+import { minify } from 'uglify-es';
 import builtins from 'rollup-plugin-node-builtins';
 import globals from 'rollup-plugin-node-globals';
 
@@ -35,7 +36,7 @@ export default {
 		resolve({
 			preferBuiltins: false,
 		}),
-		
+
 		commonjs({
 			ignoreGlobal: true,
 		}),
@@ -45,6 +46,6 @@ export default {
 		// If we're building for production (npm run build
 		// instead of npm run dev), transpile and minify
 		production && buble({ exclude: 'node_modules/**' }),
-		production && uglify()
+		production && uglify({}, minify)
 	]
 };
