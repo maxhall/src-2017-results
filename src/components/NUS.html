@@ -4,6 +4,7 @@
   <NUSBoxes
     nusSeatArray='{{nusSeatArray}}'
     nusTurnout='{{collatedResults.copy[0].nusturnout}}'
+    numberOfElectedDelegates='{{numberOfElectedDelegates}}'
   />
 
   <div class="analysis">{{{collatedResults.copy[0].nusanalysis}}}</div>
@@ -39,10 +40,18 @@
         return collatedResults;
       },
 
-      nusSeatArray: collatedResults => {
+      electedDelegates: collatedResults => {
         const electedDelegates = collatedResults.nus.filter(candidate => {
           return candidate.elected==='1';
         });
+        return electedDelegates;
+      },
+
+      numberOfElectedDelegates: electedDelegates => {
+        return electedDelegates.length;
+      },
+
+      nusSeatArray: (collatedResults, electedDelegates) => {
         const numberOfEmptySeats = 7 - electedDelegates.length;
         const fillSeats = Array(numberOfEmptySeats).fill(0);
         const allSeats = electedDelegates.concat(fillSeats);

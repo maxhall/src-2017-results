@@ -3,9 +3,11 @@
     <div class="details-right">
       <span class="name">Mint</span>
       <span class="percentage">{{ mintPercentage }}%</span>
+      <span class="total total--mint">{{ mintTotal }}%</span>
     </div>
     <div class="details-left">
       <span class="percentage">{{ heatPercentage }}%</span>
+      <span class="total total--heat">{{ heatTotal }}%</span>
       <span class="name">Heat</span>
     </div>
   </div>
@@ -14,7 +16,7 @@
     <span class="mint-bar" style="width:{{mintPercentage}}%"></span>
     <span class="middle-mark"></span>
   </div>
-  <span class="turnout">{{honiBoothsCounted}}/{{numberOfBooths}} polling stations counted. {{ honiTurnout * 100 }}% of students voted.</span>
+  <span class="turnout">{{honiBoothsCounted}}/{{numberOfBooths}} booths counted. {{ honiTurnout * 100 }}% turnout</span>
 </div>
 
 <style>

@@ -4,6 +4,7 @@
   <CouncilBoxes
     councilSeatArray='{{councilSeatArray}}'
     councilTurnout='{{collatedResults.copy[0].councilturnout}}'
+    councillorsElected='{{councillorsElected}}'
   />
 
   <div class="analysis">{{{collatedResults.copy[0].councilanalysis}}}</div>
@@ -65,6 +66,14 @@
         });
 
         return councilSeatArray;
+      },
+      councillorsElected: collatedResults => {
+        const electedCouncillors = collatedResults.council.filter((councillor) => {
+          if ('1'===councillor.elected) {
+            return true;
+          }
+        });
+        return electedCouncillors.length;
       },
     },
 
