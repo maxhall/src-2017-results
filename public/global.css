@@ -66,3 +66,10 @@ button:active {
 button:focus {
 	border-color: #666;
 }
+
+
+.toggle {
+  background-color: #eeeeee;
+  padding: 0.5rem;
+	text-transform: uppercase;
+}

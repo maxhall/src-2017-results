@@ -21,6 +21,7 @@
   * No data at all
   * Check embedded links work properly (potentially use PYM's direct parent)
   * Check on peoples' phones
+  * Do we need to for the animations to complete before sending the height?
 * Add analytics
 * Remove logging statements throughout
 
