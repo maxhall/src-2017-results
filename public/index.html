@@ -14,7 +14,10 @@
 <body>
 	<script src='bundle.js'></script>
 	<script type="text/javascript">
-		var pymChild = new pym.Child({ renderCallback: () => { console.log('pym!');}, polling: 500 });
+		var pymChild = new pym.Child({
+			renderCallback: () => { console.log('pym!');},
+			polling: 500
+		});
 		pymChild.sendHeight();
 	</script>
 </body>
