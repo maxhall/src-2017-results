@@ -29,6 +29,8 @@
     display: block;
     position: relative;
     background-color: red;
+    margin: 0;
+    padding: 0;
   }
   .stream-container {
     overflow-y: scroll;
@@ -68,14 +70,15 @@
       // and do make visible that number + 1 ??
       visiblePosts: publishedPosts => {
         // return the most recent 20 posts
-        return publishedPosts.slice(1, 21);
+        return publishedPosts.slice(0, 20);
       }
     },
 
     methods: {
+      // SOMETHING HERE IS AN INDEX OFF BY ONE, LOADED POSTS ARE WEIRD
       loadMorePosts(visiblePosts, publishedPosts) {
-        const newNumberOfPosts = visiblePosts.length + 11;
-        const morePosts = publishedPosts.slice(1, newNumberOfPosts);
+        const newNumberOfPosts = visiblePosts.length + 10;
+        const morePosts = publishedPosts.slice(0, newNumberOfPosts);
         this.set({ visiblePosts: morePosts });
         this.fire('sendTheHeight');
       },
