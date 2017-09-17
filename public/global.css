@@ -119,7 +119,6 @@ button:focus {
 }
 
 .blog-container {
-	background-color: #eeeeee;
 	padding: 0.5rem;
 }
 
@@ -170,6 +169,7 @@ button:focus {
  */
 .toggle {
   background-color: #eeeeee;
+	font-weight: 600;
   padding: 0.5rem;
 	text-transform: uppercase;
 }

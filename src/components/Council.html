@@ -9,7 +9,7 @@
 
   <div class="analysis">{{{collatedResults.copy[0].councilanalysis}}}</div>
 
-  <div on:click='toggleTableDisplay(displayTable)' class="toggle"><span ref:toggleText>Full results</span></div>
+  <div on:click='toggleTableDisplay(displayTable)' class="toggle"><span ref:toggleText>+ Full results</span></div>
   {{#if displayTable}}
     <div transition:slide>
       <CouncilTable collatedResults='{{collatedResults}}'/>
@@ -85,11 +85,11 @@
         const toggleElement = this.refs.toggleText;
         if (displayTable) {
           this.set({displayTable:false});
-          toggleElement.textContent = 'Full results';
+          toggleElement.textContent = '+ Full results';
           this.fire('sendTheHeight');
         } else {
           this.set({displayTable:true})
-          toggleElement.textContent = 'Close full results';
+          toggleElement.textContent = '- Full results';
           this.fire('sendTheHeight');
         }
       }

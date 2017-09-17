@@ -1,13 +1,12 @@
 <section class="blog-container">
   <h2>{{ blogData.copy[0].blogtitle }}</h2>
-  <div>{{{ blogData.copy[0].blogstandfirst }}}</div>
-  <div id="help" class="stream-container">
+  <div class="stream-container">
     {{#each visiblePosts as post @body}}
       {{#if '1'===post.highlight}}
         <span class="highlight-bar"></span>
       {{/if}}
       <article class="blogPost" transition:fade>
-        <h3>{{post.heading}}</h3>
+        <h3 class="blogPost-heading">{{post.heading}}</h3>
         <p class="sans-light">{{post.meta}}</p>
         {{{post.body}}}
       </article>
@@ -32,7 +31,13 @@
   }
   .blogPost {
     background-color: white;
-    margin: 1rem 0;
+    margin: 0 0 1rem;
+    padding: 1rem;
+    border: 1px solid #eee;
+  }
+  .blogPost-heading {
+    margin-bottom: 0;
+    padding: 0;
   }
   .highlight {
     background-color: red;
