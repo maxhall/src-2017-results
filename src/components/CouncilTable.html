@@ -12,7 +12,7 @@
         <td>{{row.faction}}</td>
         <td>{{row.ticket}}</td>
         <td>{{row.votes}}</td>
-        <td>{{row.elected}}</td>
+        <td style="background-color:{{row.factionColor}};">{{row.elected}}</td>
     </tr>
   {{/each}}
 </table>
@@ -42,7 +42,10 @@
           return augmentedCandidate;
         });
         console.log(colourAugmentedRowArray);
-        return colourAugmentedRowArray;
+        const sortedRowArray = colourAugmentedRowArray.sort((a, b) => {
+          return Number(b.votes) - Number(a.votes);
+        })
+        return sortedRowArray;
       },
     },
   }

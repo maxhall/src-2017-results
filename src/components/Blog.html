@@ -1,21 +1,32 @@
 <section class="blog-container">
-  <h2>{{ blogData.copy[0].blogtitle }}</h2>
-  <div class="stream-container">
-    {{#each visiblePosts as post @body}}
-      {{#if '1'===post.highlight}}
-        <span class="highlight-bar"></span>
+  <div class="flex-wrapper">
+    <h2 class="blog-heading">{{ blogData.copy[0].blogtitle }}</h2>
+    <div class="stream-container">
+      {{#each visiblePosts as post @body}}
+        {{#if '1'===post.highlight}}
+          <span class="highlight-bar"></span>
+        {{/if}}
+        <article class="blogPost" transition:fade>
+          <h3 class="blogPost-heading">{{post.heading}}</h3>
+          <p class="sans-light">{{post.meta}}</p>
+          {{{post.body}}}
+        </article>
+      {{/each}}
+      {{#if loadMoreButtonVisible}}
+        <span class="button load-more" on:click='loadMorePosts(visiblePosts, publishedPosts)'>Load more posts</span>
       {{/if}}
-      <article class="blogPost" transition:fade>
-        <h3 class="blogPost-heading">{{post.heading}}</h3>
-        <p class="sans-light">{{post.meta}}</p>
-        {{{post.body}}}
-      </article>
-    {{/each}}
-    <button on:click='loadMorePosts(visiblePosts, publishedPosts)'>Load more posts</button>
+    </div>
   </div>
 </section>
 
 <style>
+  .blog-heading {
+    margin-bottom: 0.5rem;
+  }
+  .flex-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
   .highlight-bar {
     height: 2px;
     width: 100%;
@@ -27,7 +38,10 @@
   }
   .stream-container {
     overflow-y: scroll;
-    height: 400px;
+    border-style: solid;
+    border-color: #eee;
+    border-width: 1px 0;
+    align-self: stretch;
   }
   .blogPost {
     background-color: white;
@@ -41,6 +55,9 @@
   }
   .highlight {
     background-color: red;
+  }
+  .load-more {
+    text-align: center;
   }
 </style>
 
@@ -69,6 +86,9 @@
       visiblePosts: publishedPosts => {
         // return the most recent 20 posts
         return publishedPosts.slice(0, 20);
+      },
+      loadMoreButtonVisible: (publishedPosts, visiblePosts) => {
+        return visiblePosts.length == publishedPosts.length ? false : true;
       }
     },
 

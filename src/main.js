@@ -39,7 +39,7 @@ const appData = {
 		],
 		copy: [{
 			title: 'default',
-			displayresults: '1',
+			displayresults: '0',
 		}],
 		council: [
 			{ faction: 'surprise' }

@@ -38,6 +38,7 @@ h3 {
 table {
 	width: 100%;
   border: 1px solid #eee;
+	border-top-width: 0px;
 	font-size: 0.8rem;
 	border-collapse: collapse;
 	text-align: left;
@@ -74,13 +75,11 @@ td {
 	color: #666;
 }
 
-a {
-	text-decoration: none;
-}
-
+a,
 a:hover,
-a:visited {
-	text-decoration: underline;
+a:visited,
+a:active {
+	color: #333;
 }
 
 label {
@@ -131,7 +130,6 @@ button:focus {
 }
 
 .blog-container {
-	padding: 0.5rem;
 }
 
 .content-wrapper {
@@ -188,4 +186,15 @@ button:focus {
 
 .candidate-name {
 	font-weight: 700;
+}
+
+.button {
+	font-family: "Roboto", Helvetica, sans-serif;
+	font-weight: 700;
+	font-size: 1rem;
+	text-transform: uppercase;
+	padding: 0.5rem 1rem;
+	margin: 0 auto;
+	display: block;
+	border: 1px solid black;
 }
