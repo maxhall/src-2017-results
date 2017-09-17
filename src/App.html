@@ -2,7 +2,7 @@
 
 <Header headerStandfirst='{{collatedResults.copy[0].headerstandfirst}}'/>
 {{#if '1'===collatedResults.copy[0].displayresults}}
-	{{#if appWidth < 500 }}
+	{{#if appWidth < 900 }}
 		<TabBar
 			currentPane='results'
 			collatedResults='{{collatedResults}}'
@@ -29,7 +29,7 @@
 		/>
 	</div>
 {{/if}}
-<Footer />
+<Footer footnotes='{{collatedResults.copy[0].footnotes}}'/>
 
 <style>
 	article {
@@ -42,13 +42,13 @@
 	@media (min-width: 500px) {
 		.blog-only-wrapper {
 			width: 80%;
-			margin: 0.5rem auto;
+			margin: 0 auto 1rem;
 		}
 	}
 	@media (min-width: 900px) {
 		.blog-only-wrapper {
 			width: 50%;
-			margin: 0.5rem auto;
+			margin: 0 auto 1rem;
 		}
 	}
 </style>

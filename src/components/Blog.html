@@ -1,4 +1,4 @@
-<section>
+<section class="blog-container">
   <h2>{{ blogData.copy[0].blogtitle }}</h2>
   <div>{{{ blogData.copy[0].blogstandfirst }}}</div>
   <div id="help" class="stream-container">
@@ -8,7 +8,7 @@
       {{/if}}
       <article class="blogPost" transition:fade>
         <h3>{{post.heading}}</h3>
-        <p>{{post.meta}}</p>
+        <p class="sans-light">{{post.meta}}</p>
         {{{post.body}}}
       </article>
     {{/each}}
@@ -17,12 +17,6 @@
 </section>
 
 <style>
-  section {
-    flex: 1;
-    background-color: #eeeeee;
-    padding: 1rem;
-  }
-
   .highlight-bar {
     height: 2px;
     width: 100%;
@@ -40,7 +34,6 @@
     background-color: white;
     margin: 1rem 0;
   }
-
   .highlight {
     background-color: red;
   }
