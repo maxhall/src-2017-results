@@ -1,21 +1,14 @@
-article[svelte-1194038916]{display:flex}.blog-only-wrapper[svelte-1194038916]{width:100%;margin:0.5rem}@media(min-width: 500px){.blog-only-wrapper[svelte-1194038916]{width:80%;margin:0.5rem auto}}@media(min-width: 900px){.blog-only-wrapper[svelte-1194038916]{width:50%;margin:0.5rem auto}}
-section[svelte-551939117]{flex:3;display:flex;flex-wrap:wrap;justify-content:space-between;align-content:flex-start}section[svelte-551939117]>section[svelte-551939117]{background-color:red}
-section[svelte-1139317400]{width:48%}
-div[svelte-218228418]{width:60%;margin:0 auto}
+article[svelte-279816004]{display:flex}.blog-only-wrapper[svelte-279816004]{width:100%;margin:0.5rem}@media(min-width: 500px){.blog-only-wrapper[svelte-279816004]{width:80%;margin:0 auto 1rem}}@media(min-width: 900px){.blog-only-wrapper[svelte-279816004]{width:50%;margin:0 auto 1rem}}
+div[svelte-1602132112]{width:60%;margin:0 auto}
 table[svelte-1458062172]{width:100%}
-section[svelte-535494263]{width:48%}
-div[svelte-3506469043]{width:60%;margin:0 auto}
+div[svelte-2256295731]{width:60%;margin:0 auto}
 table[svelte-3060180359]{width:100%}
-section[svelte-480299078]{width:48%}
-table[svelte-3031497649]{width:100%}thead[svelte-3031497649]{text-align:left}.candidate-name[svelte-3031497649]{width:30%}.bar-wrapper[svelte-3031497649]{display:table-cell;width:40%}.bar[svelte-3031497649]{display:block;position:relative;height:10px;border-radius:2px}
+table[svelte-961216624]{width:100%}thead[svelte-961216624]{text-align:left}.candidate-name[svelte-961216624]{}.bar-wrapper[svelte-961216624]{display:table-cell;width:40%}.bar[svelte-961216624]{display:block;position:relative;height:10px;border-radius:2px}
 table[svelte-3058748392]{width:100%}
-section[svelte-818750618]{width:48%}
-.details[svelte-3814180877]{display:flex;flex-direction:row;justify-content:space-between}.details-right[svelte-3814180877]{text-align:right}.bars[svelte-3814180877]{display:block}.heat-bar[svelte-3814180877]{position:relative;display:block;right:0;top:0;background-color:red;height:20px;width:100%;margin:0}.mint-bar[svelte-3814180877]{position:relative;display:block;right:0;top:0;background-color:green;height:20px;margin:0}.middle-mark[svelte-3814180877]{position:relative;display:block;background-color:black;height:20px;width:2px;margin:0 auto}
+.details[svelte-921744841]{display:flex;flex-direction:row;justify-content:space-between}.details-right[svelte-921744841]{text-align:right}.bars[svelte-921744841]{display:block}.heat-bar[svelte-921744841]{position:relative;display:block;right:0;top:0;background-color:red;height:20px;width:100%;margin:0}.mint-bar[svelte-921744841]{position:relative;display:block;right:0;top:0;background-color:green;height:20px;margin:0}.middle-mark[svelte-921744841]{position:relative;display:block;background-color:black;height:20px;width:2px;margin:0 auto}
 table[svelte-1655102491]{width:100%}
-section[svelte-1301287849]{flex:1;background-color:#eeeeee;padding:1rem}.highlight-bar[svelte-1301287849]{height:2px;width:100%;display:block;position:relative;background-color:red;margin:0;padding:0}.stream-container[svelte-1301287849]{overflow-y:scroll;height:400px}.blogPost[svelte-1301287849]{background-color:white;margin:1rem 0}.highlight[svelte-1301287849]{background-color:red}
-footer[svelte-1101939732]{background-color:grey
-  }
-.live[svelte-1548400607]{fill:#ED1C24}.masthead[svelte-1548400607]{display:block;width:25%;margin:0 auto}#header-logo[svelte-1548400607]{display:inline-block;width:70%}.live-time[svelte-1548400607]{display:inline-block;width:30%
-  }
+.highlight-bar[svelte-1898001274]{height:2px;width:100%;display:block;position:relative;background-color:red;margin:0;padding:0}.stream-container[svelte-1898001274]{overflow-y:scroll;height:400px}.blogPost[svelte-1898001274]{background-color:white;margin:1rem 0}.highlight[svelte-1898001274]{background-color:red}
+footer[svelte-732869313]{border-top:1px solid #eee;margin:1rem;padding:1rem}
+header[svelte-3023062943]{margin:0 auto 1rem;width:100%}.standfirst[svelte-3023062943]{text-align:justify}@media(min-width: 500px){header[svelte-3023062943]{width:40%}}@media(min-width: 900px){header[svelte-3023062943]{width:30%}}#header-logo[svelte-3023062943]{display:block;width:100%;margin:0 0 1rem}.live-time[svelte-3023062943]{color:red;text-align:center;text-transform:uppercase;display:block;margin:0 0 1rem}
 
 /*# sourceMappingURL=bundle.css.map */
