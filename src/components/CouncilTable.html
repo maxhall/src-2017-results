@@ -8,7 +8,7 @@
   </thead>
   {{#each councilTableData as row }}
     <tr>
-        <td>{{row.candidate}}</td>
+        <td class="candidate-name" style="background-color:{{row.factionColor}};">{{row.candidate}}</td>
         <td>{{row.faction}}</td>
         <td>{{row.ticket}}</td>
         <td>{{row.votes}}</td>
@@ -26,11 +26,24 @@
   export default {
     data () {
       return {
-
       }
     },
     computed: {
-      councilTableData: collatedResults => collatedResults.council
+      councilTableData: collatedResults => {
+        const colourAugmentedRowArray = collatedResults.council.map((object) => {
+          const augmentedCandidate = object;
+          if ('1'===augmentedCandidate.elected) {
+            const candidateFactionColor = collatedResults.colors[object.faction];
+            augmentedCandidate['factionColor'] = candidateFactionColor;
+          } else {
+            const candidateFactionColor = '';
+            augmentedCandidate['factionColor'] = candidateFactionColor;
+          };
+          return augmentedCandidate;
+        });
+        console.log(colourAugmentedRowArray);
+        return colourAugmentedRowArray;
+      },
     },
   }
 </script>

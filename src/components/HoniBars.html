@@ -1,22 +1,22 @@
-<div>
+<div class="results-graphic">
   <div class="details">
-    <div class="details-right">
-      <span class="name">Mint</span>
-      <span class="percentage">{{ mintPercentage }}%</span>
-      <span class="total total--mint">{{ mintTotal }}%</span>
+    <div class="details--left">
+      <span class="name" style="color:{{mintColor}}">Mint</span>
+      <h2 class="percentage" style="color:{{mintColor}}">{{ mintPercentage }}%</h2>
+      <span class="total sans-dark">{{ mintTotal }}</span>
     </div>
-    <div class="details-left">
-      <span class="percentage">{{ heatPercentage }}%</span>
-      <span class="total total--heat">{{ heatTotal }}%</span>
-      <span class="name">Heat</span>
+    <div class="details--right">
+      <span class="name" style="color:{{heatColor}}">Heat</span>
+      <span class="total sans-dark">{{ heatTotal }}</span>
+      <h2 class="percentage" style="color:{{heatColor}}">{{ heatPercentage }}%</h2>
     </div>
   </div>
   <div class="bars">
-    <span class="heat-bar"></span>
-    <span class="mint-bar" style="width:{{mintPercentage}}%"></span>
+    <span class="heat-bar" style="background-color:{{heatColor}}"></span>
+    <span class="mint-bar" style="width:{{mintPercentage}}%; background-color:{{mintColor}}"></span>
     <span class="middle-mark"></span>
   </div>
-  <span class="turnout sans-light">{{honiBoothsCounted}}/{{numberOfBooths}} booths counted. {{ honiTurnout * 100 }}% turnout</span>
+  <span class="turnout sans-light">{{honiBoothsCounted}}/{{numberOfBooths}} booths counted. {{ honiTurnout * 100 }}% turnout.</span>
 </div>
 
 <style>
@@ -26,10 +26,33 @@
     justify-content: space-between;
   }
 
-  .details-right {
+  .details--left {
+    text-align: left;
+  }
+  .details--right {
     text-align: right;
   }
 
+  .name {
+    font-weight: 700;
+    letter-spacing: 0.9;
+    font-size: 1.3rem;
+    line-height: 0.7;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  .percentage {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.2;
+    display: inline-block;
+  }
+
+  .total {
+    display: inline-block;
+    margin: 0;
+  }
   .bars {
     display: block;
     position: relative;
@@ -40,8 +63,7 @@
     display: block;
     right: 0;
     top: 0;
-    background-color: red;
-    height: 20px;
+    height: 32px;
     width: 100%;
     margin: 0;
   }
@@ -49,17 +71,17 @@
   .mint-bar {
     position: absolute;
     display: block;
-    right: 0;
+    left: 0;
     top: 0;
-    background-color: green;
-    height: 20px;
+    height: 32px;
     margin: 0;
   }
+
   .middle-mark {
     position: relative;
     display: block;
-    background-color: black;
-    height: 20px;
+    background-color: #333;
+    height: 32px;
     width: 2px;
     margin: 0 auto;
   }

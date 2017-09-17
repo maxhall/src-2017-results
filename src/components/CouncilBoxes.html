@@ -1,4 +1,4 @@
-<div>
+<div class="results-graphic">
   <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 1000 914.3">
     <path ref:seat1 d="M0 793h121.4v121.3H0z" id="seat-1"/>
     <path ref:seat2 d="M146.4 793h121.4v121.3H146.4z" id="seat-2"/>
@@ -34,11 +34,11 @@
     <path ref:seat27 d="M878.6 500H1000v121.4H878.6z" id="seat-27"/>
     <path ref:seat24 d="M878.6 353.6H1000V475H878.6z" id="seat-24"/>
   </svg>
+  <span class="turnout sans-light">{{councillorsElected}}/33 councillors elected. {{ councilTurnout * 100 }}% turnout.</span>
 </div>
-<span class="turnout sans-light">{{councillorsElected}}/33 councillors elected. {{ councilTurnout * 100 }}% turnout</span>
 
 <style>
-  div {
+  svg {
     width: 60%;
     margin: 0 auto;
   }

@@ -1,4 +1,4 @@
-<div>
+<div class="results-graphic">
   <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 1000 121.4">
     <path ref:seat7 d="M878.5 0h121.4v121.4H878.5z" class="seat-7"/>
     <path ref:seat6 d="M732.1 0h121.4v121.4H732.1z" class="seat-6"/>
@@ -8,13 +8,15 @@
     <path ref:seat2 d="M146.4 0h121.4v121.4H146.4z" class="seat-2"/>
     <path ref:seat1 d="M0 0h121.4v121.4H0z" class="seat-1"/>
   </svg>
+  <span class="turnout sans-light">{{numberOfElectedDelegates}}/7 delegates elected. {{ nusTurnout * 100 }}% turnout.</span>
 </div>
-<span class="turnout sans-light">{{numberOfElectedDelegates}}/7 delegates elected. {{ nusTurnout * 100 }}% turnout</span>
+
 
 <style>
-  div {
+  svg {
     width: 60%;
     margin: 0 auto;
+    display: block;
   }
 </style>
 

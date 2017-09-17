@@ -1,4 +1,4 @@
-<div>
+<div class="results-graphic">
   <table>
     <thead>
       <th>Candidate</th>
@@ -11,7 +11,7 @@
         <td class="candidate-name">{{presCandidate.candidate}}</td>
         <td>{{presCandidate.faction}}</td>
         <td>{{presCandidate.votes}}</td>
-        <td>{{presCandidate.percent}}%</td>
+        <td class="candidate-percent">{{presCandidate.percent}}%</td>
         <td class="bar-wrapper">
           <span class="bar"
             style="width: {{presCandidate.barPercentage}}%; background-color: {{presCandidate.color}}">
@@ -21,20 +21,36 @@
     {{/each}}
   </table>
   <span class="turnout sans-light">
-    {{collatedResults.copy[0].presboothscounted}}/{{collatedResults.copy[0].numberofbooths}} booths counted. {{ collatedResults.copy[0].presturnout * 100 }}% turnout
+    {{collatedResults.copy[0].presboothscounted}}/{{collatedResults.copy[0].numberofbooths}} booths counted. {{ collatedResults.copy[0].presturnout * 100 }}% turnout.
   </span>
 </div>
 
 <style>
   table {
     width: 100%;
+    font-size: 1rem;
+    border: 0px;
   }
 
   thead {
     text-align: left;
+    font-size: 0.8rem;
   }
+
+  th,
+  td {
+    padding: 0.3rem 0.3rem 0.3rem 0;
+    white-space: nowrap;
+  }
+
+  .candidate-percent {
+    font-weight: 700;
+  }
+
   .candidate-name {
+    font-weight: 700;
   }
+
   .bar-wrapper {
     display: table-cell;
     width: 40%;

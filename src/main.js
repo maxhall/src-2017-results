@@ -24,6 +24,8 @@ const appData = {
 		'Socialist Alternative': '#d98a01',
 		'Solidarity': '#ff00f0',
 		'Blank': '#eeeeee',
+		'Mint': '#71d39d',
+		'Heat': '#ed1b24',
 	},
 	results: {
 		blog: [

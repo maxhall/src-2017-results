@@ -8,7 +8,8 @@ body {
 	font-family: 'Lora', Georgia, serif;
 }
 
-p {
+p,
+.results-graphic {
 	margin: 0 0 1rem;
 }
 
@@ -36,16 +37,23 @@ h3 {
 
 table {
 	width: 100%;
+  border: 1px solid #eee;
 	font-size: 0.8rem;
 	border-collapse: collapse;
 	text-align: left;
+	padding: 0.3rem;
 }
 
 thead {
+	color: #666;
+	text-transform: uppercase;
+	margin: 0;
+	border-bottom: 1px solid #eee;
 }
 
 th {
-
+	font-weight: 300;
+	padding: 0.3rem;
 }
 
 tr {
@@ -60,6 +68,10 @@ td {
 .sans-light {
 	font-size: 0.8rem;
 	margin: 0 0 1rem;
+}
+
+.sans-light {
+	color: #666;
 }
 
 a {
@@ -169,7 +181,11 @@ button:focus {
  */
 .toggle {
   background-color: #eeeeee;
-	font-weight: 600;
+	font-weight: 700;
   padding: 0.5rem;
 	text-transform: uppercase;
+}
+
+.candidate-name {
+	font-weight: 700;
 }
