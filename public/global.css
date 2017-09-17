@@ -114,6 +114,10 @@ button:focus {
  display: block;
 }
 
+.results-section {
+	margin: 0 0 2rem;
+}
+
 .blog-container {
 	background-color: #eeeeee;
 	padding: 0.5rem;

@@ -10,7 +10,7 @@
 			on:sendTheHeight='pymUpdateHeight()'
 		/>
 	{{else}}
-		<article>
+		<article class="content-wrapper">
 			<Results
 				collatedResults='{{collatedResults}}'
 				on:sendTheHeight='pymUpdateHeight()'
@@ -32,25 +32,7 @@
 <Footer footnotes='{{collatedResults.copy[0].footnotes}}'/>
 
 <style>
-	article {
-		display: flex;
-	}
-	.blog-only-wrapper {
-		width: 100%;
-		margin: 0.5rem;
-	}
-	@media (min-width: 500px) {
-		.blog-only-wrapper {
-			width: 80%;
-			margin: 0 auto 1rem;
-		}
-	}
-	@media (min-width: 900px) {
-		.blog-only-wrapper {
-			width: 50%;
-			margin: 0 auto 1rem;
-		}
-	}
+
 </style>
 
 <script>

@@ -1,11 +1,6 @@
 # TODO
 
-* Optional features
-  * Scroll to top of the blog
-  * Flash the header on new data
 * Style everything
-  * Layout mechanics
-  * Common type
   * Common table style (will override for president bars)
   * Common button (used for toggles/load more posts)
   * Common styles for the full results expander
@@ -14,6 +9,10 @@
   * Element by element
   * Fix all the colors for consistent lightness
   * Replace elected "1" with a tick in the results tables
+* Optional features
+  * Scroll to top of the blog
+  * Flash the header on new data
+  * Hide the show more posts button when there are no more posts to display
 * Testing:
   * Do we need a resize on a manual window resize?
   * No data at all
