@@ -390,15 +390,16 @@ var template$4 = (function () {
 }());
 
 function encapsulateStyles$1 ( node ) {
-	setAttribute( node, 'svelte-1602132112', '' );
+	setAttribute( node, 'svelte-2690494695', '' );
 }
 
 function create_main_fragment$4 ( state, component ) {
-	var div, svg, path, path_1, path_2, path_3, path_4, path_5, path_6, path_7, path_8, path_9, path_10, path_11, path_12, path_13, path_14, path_15, path_16, path_17, path_18, path_19, path_20, path_21, path_22, path_23, path_24, path_25, path_26, path_27, path_28, path_29, path_30, path_31, path_32, text_1, span, text_2_value, text_2, text_3, text_4_value, text_4, text_5;
+	var div, div_1, svg, path, path_1, path_2, path_3, path_4, path_5, path_6, path_7, path_8, path_9, path_10, path_11, path_12, path_13, path_14, path_15, path_16, path_17, path_18, path_19, path_20, path_21, path_22, path_23, path_24, path_25, path_26, path_27, path_28, path_29, path_30, path_31, path_32, text_1, span, text_2_value, text_2, text_3, text_4_value, text_4, text_5;
 
 	return {
 		create: function () {
 			div = createElement( 'div' );
+			div_1 = createElement( 'div' );
 			svg = createSvgElement( 'svg' );
 			path = createSvgElement( 'path' );
 			path_1 = createSvgElement( 'path' );
@@ -433,17 +434,20 @@ function create_main_fragment$4 ( state, component ) {
 			path_30 = createSvgElement( 'path' );
 			path_31 = createSvgElement( 'path' );
 			path_32 = createSvgElement( 'path' );
-			text_1 = createText( "\n" );
+			text_1 = createText( "\n  " );
 			span = createElement( 'span' );
 			text_2 = createText( text_2_value = state.councillorsElected );
 			text_3 = createText( "/33 councillors elected. " );
 			text_4 = createText( text_4_value = state.councilTurnout * 100 );
-			text_5 = createText( "% turnout" );
+			text_5 = createText( "% turnout." );
 			this.hydrate();
 		},
 
 		hydrate: function ( nodes ) {
 			encapsulateStyles$1( div );
+			div.className = "results-graphic";
+			encapsulateStyles$1( div_1 );
+			div_1.className = "svg-wrapper";
 			setAttribute( svg, 'xmlns', "http://www.w3.org/2000/svg" );
 			setAttribute( svg, 'id', "Layer_1" );
 			setAttribute( svg, 'viewBox', "0 0 1000 914.3" );
@@ -518,7 +522,8 @@ function create_main_fragment$4 ( state, component ) {
 
 		mount: function ( target, anchor ) {
 			insertNode( div, target, anchor );
-			appendNode( svg, div );
+			appendNode( div_1, div );
+			appendNode( svg, div_1 );
 			appendNode( path, svg );
 			component.refs.seat1 = path;
 			appendNode( path_1, svg );
@@ -585,8 +590,8 @@ function create_main_fragment$4 ( state, component ) {
 			component.refs.seat27 = path_31;
 			appendNode( path_32, svg );
 			component.refs.seat24 = path_32;
-			insertNode( text_1, target, anchor );
-			insertNode( span, target, anchor );
+			appendNode( text_1, div );
+			appendNode( span, div );
 			appendNode( text_2, span );
 			appendNode( text_3, span );
 			appendNode( text_4, span );
@@ -605,8 +610,6 @@ function create_main_fragment$4 ( state, component ) {
 
 		unmount: function () {
 			detachNode( div );
-			detachNode( text_1 );
-			detachNode( span );
 		},
 
 		destroy: function () {
@@ -716,17 +719,33 @@ var template$5 = (function () {
   return {
     data () {
       return {
-
       }
     },
     computed: {
-      councilTableData: collatedResults => collatedResults.council
+      councilTableData: collatedResults => {
+        const colourAugmentedRowArray = collatedResults.council.map((object) => {
+          const augmentedCandidate = object;
+          if ('1'===augmentedCandidate.elected) {
+            const candidateFactionColor = collatedResults.colors[object.faction];
+            augmentedCandidate['factionColor'] = candidateFactionColor;
+          } else {
+            const candidateFactionColor = '';
+            augmentedCandidate['factionColor'] = candidateFactionColor;
+          }
+          return augmentedCandidate;
+        });
+        console.log(colourAugmentedRowArray);
+        const sortedRowArray = colourAugmentedRowArray.sort((a, b) => {
+          return Number(b.votes) - Number(a.votes);
+        });
+        return sortedRowArray;
+      },
     },
   }
 }());
 
 function encapsulateStyles$2 ( node ) {
-	setAttribute( node, 'svelte-1458062172', '' );
+	setAttribute( node, 'svelte-2330141528', '' );
 }
 
 function create_main_fragment$5 ( state, component ) {
@@ -831,7 +850,7 @@ function create_main_fragment$5 ( state, component ) {
 }
 
 function create_each_block ( state, each_block_value, row, row_index, component ) {
-	var tr, td, text_value, text, text_1, td_1, text_2_value, text_2, text_3, td_2, text_4_value, text_4, text_5, td_3, text_6_value, text_6, text_7, td_4, text_8_value, text_8;
+	var tr, td, td_style_value, text_value, text, text_1, td_1, text_2_value, text_2, text_3, td_2, text_4_value, text_4, text_5, td_3, text_6_value, text_6, text_7, td_4, td_4_style_value, text_8_value, text_8;
 
 	return {
 		create: function () {
@@ -850,6 +869,13 @@ function create_each_block ( state, each_block_value, row, row_index, component 
 			text_7 = createText( "\n        " );
 			td_4 = createElement( 'td' );
 			text_8 = createText( text_8_value = row.elected );
+			this.hydrate();
+		},
+
+		hydrate: function ( nodes ) {
+			td.className = "candidate-name";
+			td.style.cssText = td_style_value = "background-color:" + ( row.factionColor ) + ";";
+			td_4.style.cssText = td_4_style_value = "background-color:" + ( row.factionColor ) + ";";
 		},
 
 		mount: function ( target, anchor ) {
@@ -871,6 +897,10 @@ function create_each_block ( state, each_block_value, row, row_index, component 
 		},
 
 		update: function ( changed, state, each_block_value, row, row_index ) {
+			if ( td_style_value !== ( td_style_value = "background-color:" + ( row.factionColor ) + ";" ) ) {
+				td.style.cssText = td_style_value;
+			}
+
 			if ( text_value !== ( text_value = row.candidate ) ) {
 				text.data = text_value;
 			}
@@ -885,6 +915,10 @@ function create_each_block ( state, each_block_value, row, row_index, component 
 
 			if ( text_6_value !== ( text_6_value = row.votes ) ) {
 				text_6.data = text_6_value;
+			}
+
+			if ( td_4_style_value !== ( td_4_style_value = "background-color:" + ( row.factionColor ) + ";" ) ) {
+				td_4.style.cssText = td_4_style_value;
 			}
 
 			if ( text_8_value !== ( text_8_value = row.elected ) ) {
@@ -1080,7 +1114,7 @@ var template$3 = (function () {
 }());
 
 function create_main_fragment$3 ( state, component ) {
-	var section, h2, text, text_1, text_2, div, raw_value, raw_before, raw_after, text_3, div_1, span, text_4, text_5;
+	var section, h2, text, text_1, text_2, div, raw_value, raw_before, raw_after, text_3, span, text_4, text_5;
 
 	var councilboxes = new CouncilBoxes({
 		_root: component._root,
@@ -1110,7 +1144,6 @@ function create_main_fragment$3 ( state, component ) {
 			raw_before = createElement( 'noscript' );
 			raw_after = createElement( 'noscript' );
 			text_3 = createText( "\n\n  " );
-			div_1 = createElement( 'div' );
 			span = createElement( 'span' );
 			text_4 = createText( "+ Full results" );
 			text_5 = createText( "\n  " );
@@ -1121,8 +1154,8 @@ function create_main_fragment$3 ( state, component ) {
 		hydrate: function ( nodes ) {
 			section.className = "results-section";
 			div.className = "analysis";
-			div_1.className = "toggle";
-			addListener( div_1, 'click', click_handler );
+			span.className = "button";
+			addListener( span, 'click', click_handler );
 		},
 
 		mount: function ( target, anchor ) {
@@ -1137,8 +1170,7 @@ function create_main_fragment$3 ( state, component ) {
 			appendNode( raw_after, div );
 			raw_before.insertAdjacentHTML( 'afterend', raw_value = state.collatedResults.copy[0].councilanalysis );
 			appendNode( text_3, section );
-			appendNode( div_1, section );
-			appendNode( span, div_1 );
+			appendNode( span, section );
 			component.refs.toggleText = span;
 			appendNode( text_4, span );
 			appendNode( text_5, section );
@@ -1186,7 +1218,7 @@ function create_main_fragment$3 ( state, component ) {
 
 		destroy: function () {
 			councilboxes.destroy( false );
-			removeListener( div_1, 'click', click_handler );
+			removeListener( span, 'click', click_handler );
 			if ( component.refs.toggleText === span ) component.refs.toggleText = null;
 			if ( if_block ) if_block.destroy();
 		}
@@ -1340,15 +1372,16 @@ var template$7 = (function () {
 }());
 
 function encapsulateStyles$3 ( node ) {
-	setAttribute( node, 'svelte-2256295731', '' );
+	setAttribute( node, 'svelte-3316299764', '' );
 }
 
 function create_main_fragment$7 ( state, component ) {
-	var div, svg, path, path_1, path_2, path_3, path_4, path_5, path_6, text_1, span, text_2_value, text_2, text_3, text_4_value, text_4, text_5;
+	var div, div_1, svg, path, path_1, path_2, path_3, path_4, path_5, path_6, text_1, span, text_2_value, text_2, text_3, text_4_value, text_4, text_5;
 
 	return {
 		create: function () {
 			div = createElement( 'div' );
+			div_1 = createElement( 'div' );
 			svg = createSvgElement( 'svg' );
 			path = createSvgElement( 'path' );
 			path_1 = createSvgElement( 'path' );
@@ -1357,17 +1390,20 @@ function create_main_fragment$7 ( state, component ) {
 			path_4 = createSvgElement( 'path' );
 			path_5 = createSvgElement( 'path' );
 			path_6 = createSvgElement( 'path' );
-			text_1 = createText( "\n" );
+			text_1 = createText( "\n  " );
 			span = createElement( 'span' );
 			text_2 = createText( text_2_value = state.numberOfElectedDelegates );
 			text_3 = createText( "/7 delegates elected. " );
 			text_4 = createText( text_4_value = state.nusTurnout * 100 );
-			text_5 = createText( "% turnout" );
+			text_5 = createText( "% turnout." );
 			this.hydrate();
 		},
 
 		hydrate: function ( nodes ) {
 			encapsulateStyles$3( div );
+			div.className = "results-graphic";
+			encapsulateStyles$3( div_1 );
+			div_1.className = "svg-wrapper";
 			setAttribute( svg, 'xmlns', "http://www.w3.org/2000/svg" );
 			setAttribute( svg, 'id', "Layer_1" );
 			setAttribute( svg, 'viewBox', "0 0 1000 121.4" );
@@ -1390,7 +1426,8 @@ function create_main_fragment$7 ( state, component ) {
 
 		mount: function ( target, anchor ) {
 			insertNode( div, target, anchor );
-			appendNode( svg, div );
+			appendNode( div_1, div );
+			appendNode( svg, div_1 );
 			appendNode( path, svg );
 			component.refs.seat7 = path;
 			appendNode( path_1, svg );
@@ -1405,8 +1442,8 @@ function create_main_fragment$7 ( state, component ) {
 			component.refs.seat2 = path_5;
 			appendNode( path_6, svg );
 			component.refs.seat1 = path_6;
-			insertNode( text_1, target, anchor );
-			insertNode( span, target, anchor );
+			appendNode( text_1, div );
+			appendNode( span, div );
 			appendNode( text_2, span );
 			appendNode( text_3, span );
 			appendNode( text_4, span );
@@ -1425,8 +1462,6 @@ function create_main_fragment$7 ( state, component ) {
 
 		unmount: function () {
 			detachNode( div );
-			detachNode( text_1 );
-			detachNode( span );
 		},
 
 		destroy: function () {
@@ -1520,7 +1555,7 @@ var template$8 = (function () {
 }());
 
 function encapsulateStyles$4 ( node ) {
-	setAttribute( node, 'svelte-3060180359', '' );
+	setAttribute( node, 'svelte-4068913859', '' );
 }
 
 function create_main_fragment$8 ( state, component ) {
@@ -1644,6 +1679,11 @@ function create_each_block$1 ( state, each_block_value, row, row_index, componen
 			text_7 = createText( "\n        " );
 			td_4 = createElement( 'td' );
 			text_8 = createText( text_8_value = row.elected );
+			this.hydrate();
+		},
+
+		hydrate: function ( nodes ) {
+			td.className = "candidate-name";
 		},
 
 		mount: function ( target, anchor ) {
@@ -1802,11 +1842,11 @@ var template$6 = (function () {
         const toggleElement = this.refs.toggleText;
         if (displayTable) {
           this.set({displayTable:false});
-          toggleElement.textContent = 'Full results';
+          toggleElement.textContent = '+ Full results';
           this.fire('sendTheHeight');
         } else {
           this.set({displayTable:true});
-          toggleElement.textContent = 'Close full results';
+          toggleElement.textContent = '- Full results';
           this.fire('sendTheHeight');
         }
       }
@@ -1819,7 +1859,7 @@ var template$6 = (function () {
 }());
 
 function create_main_fragment$6 ( state, component ) {
-	var section, h2, text, text_1, text_2, div, raw_value, raw_before, raw_after, text_3, div_1, span, text_4, text_5;
+	var section, h2, text, text_1, text_2, div, raw_value, raw_before, raw_after, text_3, span, text_4, text_5;
 
 	var nusboxes = new NUSBoxes({
 		_root: component._root,
@@ -1849,9 +1889,8 @@ function create_main_fragment$6 ( state, component ) {
 			raw_before = createElement( 'noscript' );
 			raw_after = createElement( 'noscript' );
 			text_3 = createText( "\n\n  " );
-			div_1 = createElement( 'div' );
 			span = createElement( 'span' );
-			text_4 = createText( "Full results" );
+			text_4 = createText( "+ Full results" );
 			text_5 = createText( "\n  " );
 			if ( if_block ) if_block.create();
 			this.hydrate();
@@ -1860,8 +1899,8 @@ function create_main_fragment$6 ( state, component ) {
 		hydrate: function ( nodes ) {
 			section.className = "results-section";
 			div.className = "analysis";
-			div_1.className = "toggle";
-			addListener( div_1, 'click', click_handler );
+			span.className = "button";
+			addListener( span, 'click', click_handler );
 		},
 
 		mount: function ( target, anchor ) {
@@ -1876,8 +1915,7 @@ function create_main_fragment$6 ( state, component ) {
 			appendNode( raw_after, div );
 			raw_before.insertAdjacentHTML( 'afterend', raw_value = state.collatedResults.copy[0].nusanalysis );
 			appendNode( text_3, section );
-			appendNode( div_1, section );
-			appendNode( span, div_1 );
+			appendNode( span, section );
 			component.refs.toggleText = span;
 			appendNode( text_4, span );
 			appendNode( text_5, section );
@@ -1925,7 +1963,7 @@ function create_main_fragment$6 ( state, component ) {
 
 		destroy: function () {
 			nusboxes.destroy( false );
-			removeListener( div_1, 'click', click_handler );
+			removeListener( span, 'click', click_handler );
 			if ( component.refs.toggleText === span ) component.refs.toggleText = null;
 			if ( if_block ) if_block.destroy();
 		}
@@ -2129,7 +2167,7 @@ var template$10 = (function () {
 }());
 
 function encapsulateStyles$5 ( node ) {
-	setAttribute( node, 'svelte-961216624', '' );
+	setAttribute( node, 'svelte-3279085364', '' );
 }
 
 function create_main_fragment$10 ( state, component ) {
@@ -2172,13 +2210,18 @@ function create_main_fragment$10 ( state, component ) {
 			text_13 = createText( text_13_value = state.collatedResults.copy[0].numberofbooths );
 			text_14 = createText( " booths counted. " );
 			text_15 = createText( text_15_value = state.collatedResults.copy[0].presturnout * 100 );
-			text_16 = createText( "% turnout" );
+			text_16 = createText( "% turnout." );
 			this.hydrate();
 		},
 
 		hydrate: function ( nodes ) {
+			div.className = "results-graphic";
 			encapsulateStyles$5( table );
 			encapsulateStyles$5( thead );
+			encapsulateStyles$5( th );
+			encapsulateStyles$5( th_1 );
+			encapsulateStyles$5( th_2 );
+			encapsulateStyles$5( th_3 );
 			span.className = "turnout sans-light";
 		},
 
@@ -2288,6 +2331,10 @@ function create_each_block$2 ( state, each_block_value, presCandidate, presCandi
 		hydrate: function ( nodes ) {
 			encapsulateStyles$5( td );
 			td.className = "candidate-name";
+			encapsulateStyles$5( td_1 );
+			encapsulateStyles$5( td_2 );
+			encapsulateStyles$5( td_3 );
+			td_3.className = "candidate-percent";
 			encapsulateStyles$5( td_4 );
 			td_4.className = "bar-wrapper";
 			encapsulateStyles$5( span );
@@ -2727,11 +2774,11 @@ var template$9 = (function () {
         const toggleElement = this.refs.toggleText;
         if (displayTable) {
           this.set({displayTable:false});
-          toggleElement.textContent = 'Full results';
+          toggleElement.textContent = '+ Full results';
           this.fire('sendTheHeight');
         } else {
           this.set({displayTable:true});
-          toggleElement.textContent = 'Close full results';
+          toggleElement.textContent = '- full results';
           this.fire('sendTheHeight');
         }
       }
@@ -2744,7 +2791,7 @@ var template$9 = (function () {
 }());
 
 function create_main_fragment$9 ( state, component ) {
-	var section, h2, text, text_1, text_2, div, raw_value, raw_before, raw_after, text_3, div_1, span, text_4, text_5;
+	var section, h2, text, text_1, text_2, div, raw_value, raw_before, raw_after, text_3, span, text_4, text_5;
 
 	var presidentbars = new PresidentBars({
 		_root: component._root,
@@ -2770,9 +2817,8 @@ function create_main_fragment$9 ( state, component ) {
 			raw_before = createElement( 'noscript' );
 			raw_after = createElement( 'noscript' );
 			text_3 = createText( "\n\n  " );
-			div_1 = createElement( 'div' );
 			span = createElement( 'span' );
-			text_4 = createText( "Full results" );
+			text_4 = createText( "+ Full results" );
 			text_5 = createText( "\n  " );
 			if ( if_block ) if_block.create();
 			this.hydrate();
@@ -2781,8 +2827,8 @@ function create_main_fragment$9 ( state, component ) {
 		hydrate: function ( nodes ) {
 			section.className = "results-section";
 			div.className = "analysis";
-			div_1.className = "toggle";
-			addListener( div_1, 'click', click_handler );
+			span.className = "button";
+			addListener( span, 'click', click_handler );
 		},
 
 		mount: function ( target, anchor ) {
@@ -2797,8 +2843,7 @@ function create_main_fragment$9 ( state, component ) {
 			appendNode( raw_after, div );
 			raw_before.insertAdjacentHTML( 'afterend', raw_value = state.collatedResults.copy[0].presanalysis );
 			appendNode( text_3, section );
-			appendNode( div_1, section );
-			appendNode( span, div_1 );
+			appendNode( span, section );
 			component.refs.toggleText = span;
 			appendNode( text_4, span );
 			appendNode( text_5, section );
@@ -2844,7 +2889,7 @@ function create_main_fragment$9 ( state, component ) {
 
 		destroy: function () {
 			presidentbars.destroy( false );
-			removeListener( div_1, 'click', click_handler );
+			removeListener( span, 'click', click_handler );
 			if ( component.refs.toggleText === span ) component.refs.toggleText = null;
 			if ( if_block ) if_block.destroy();
 		}
@@ -3011,11 +3056,11 @@ var template$13 = (function () {
 }());
 
 function encapsulateStyles$7 ( node ) {
-	setAttribute( node, 'svelte-3127740207', '' );
+	setAttribute( node, 'svelte-4133611108', '' );
 }
 
 function create_main_fragment$13 ( state, component ) {
-	var div, div_1, div_2, span, text, text_1, span_1, text_2_value, text_2, text_3, text_4, span_2, text_5_value, text_5, text_6, text_8, div_3, span_3, text_9_value, text_9, text_10, text_11, span_4, text_12_value, text_12, text_13, text_14, span_5, text_15, text_18, div_4, span_6, text_19, span_7, span_7_style_value, text_20, span_8, text_22, span_9, text_23_value, text_23, text_24, text_25_value, text_25, text_26, text_27_value, text_27, text_28;
+	var div, div_1, div_2, span, span_style_value, text, text_1, h2, h2_style_value, text_2_value, text_2, text_3, text_4, span_1, text_5_value, text_5, text_7, div_3, span_2, span_2_style_value, text_8, text_9, span_3, text_10_value, text_10, text_11, h2_1, h2_1_style_value, text_12_value, text_12, text_13, text_16, div_4, span_4, span_4_style_value, text_17, span_5, span_5_style_value, text_18, span_6, text_20, span_7, text_21_value, text_21, text_22, text_23_value, text_23, text_24, text_25_value, text_25, text_26;
 
 	return {
 		create: function () {
@@ -3025,66 +3070,76 @@ function create_main_fragment$13 ( state, component ) {
 			span = createElement( 'span' );
 			text = createText( "Mint" );
 			text_1 = createText( "\n      " );
-			span_1 = createElement( 'span' );
+			h2 = createElement( 'h2' );
 			text_2 = createText( text_2_value = state.mintPercentage );
 			text_3 = createText( "%" );
 			text_4 = createText( "\n      " );
-			span_2 = createElement( 'span' );
+			span_1 = createElement( 'span' );
 			text_5 = createText( text_5_value = state.mintTotal );
-			text_6 = createText( "%" );
-			text_8 = createText( "\n    " );
+			text_7 = createText( "\n    " );
 			div_3 = createElement( 'div' );
+			span_2 = createElement( 'span' );
+			text_8 = createText( "Heat" );
+			text_9 = createText( "\n      " );
 			span_3 = createElement( 'span' );
-			text_9 = createText( text_9_value = state.heatPercentage );
-			text_10 = createText( "%" );
+			text_10 = createText( text_10_value = state.heatTotal );
 			text_11 = createText( "\n      " );
-			span_4 = createElement( 'span' );
-			text_12 = createText( text_12_value = state.heatTotal );
+			h2_1 = createElement( 'h2' );
+			text_12 = createText( text_12_value = state.heatPercentage );
 			text_13 = createText( "%" );
-			text_14 = createText( "\n      " );
-			span_5 = createElement( 'span' );
-			text_15 = createText( "Heat" );
-			text_18 = createText( "\n  " );
+			text_16 = createText( "\n  " );
 			div_4 = createElement( 'div' );
+			span_4 = createElement( 'span' );
+			text_17 = createText( "\n    " );
+			span_5 = createElement( 'span' );
+			text_18 = createText( "\n    " );
 			span_6 = createElement( 'span' );
-			text_19 = createText( "\n    " );
+			text_20 = createText( "\n  " );
 			span_7 = createElement( 'span' );
-			text_20 = createText( "\n    " );
-			span_8 = createElement( 'span' );
-			text_22 = createText( "\n  " );
-			span_9 = createElement( 'span' );
-			text_23 = createText( text_23_value = state.honiBoothsCounted );
-			text_24 = createText( "/" );
-			text_25 = createText( text_25_value = state.numberOfBooths );
-			text_26 = createText( " booths counted. " );
-			text_27 = createText( text_27_value = state.honiTurnout * 100 );
-			text_28 = createText( "% turnout" );
+			text_21 = createText( text_21_value = state.honiBoothsCounted );
+			text_22 = createText( "/" );
+			text_23 = createText( text_23_value = state.numberOfBooths );
+			text_24 = createText( " booths counted. " );
+			text_25 = createText( text_25_value = state.honiTurnout * 100 );
+			text_26 = createText( "% turnout." );
 			this.hydrate();
 		},
 
 		hydrate: function ( nodes ) {
+			div.className = "results-graphic";
 			encapsulateStyles$7( div_1 );
 			div_1.className = "details";
 			encapsulateStyles$7( div_2 );
-			div_2.className = "details-right";
+			div_2.className = "details--left";
+			encapsulateStyles$7( span );
 			span.className = "name";
-			span_1.className = "percentage";
-			span_2.className = "total total--mint";
+			span.style.cssText = span_style_value = "color:" + ( state.mintColor );
+			encapsulateStyles$7( h2 );
+			h2.className = "percentage";
+			h2.style.cssText = h2_style_value = "color:" + ( state.mintColor );
+			encapsulateStyles$7( span_1 );
+			span_1.className = "total sans-light";
 			encapsulateStyles$7( div_3 );
-			div_3.className = "details-left";
-			span_3.className = "percentage";
-			span_4.className = "total total--heat";
-			span_5.className = "name";
+			div_3.className = "details--right";
+			encapsulateStyles$7( span_2 );
+			span_2.className = "name";
+			span_2.style.cssText = span_2_style_value = "color:" + ( state.heatColor );
+			encapsulateStyles$7( span_3 );
+			span_3.className = "total sans-light";
+			encapsulateStyles$7( h2_1 );
+			h2_1.className = "percentage";
+			h2_1.style.cssText = h2_1_style_value = "color:" + ( state.heatColor );
 			encapsulateStyles$7( div_4 );
 			div_4.className = "bars";
+			encapsulateStyles$7( span_4 );
+			span_4.className = "heat-bar";
+			span_4.style.cssText = span_4_style_value = "background-color:" + ( state.heatColor );
+			encapsulateStyles$7( span_5 );
+			span_5.className = "mint-bar";
+			span_5.style.cssText = span_5_style_value = "width:" + ( state.mintPercentage ) + "%; background-color:" + ( state.mintColor );
 			encapsulateStyles$7( span_6 );
-			span_6.className = "heat-bar";
-			encapsulateStyles$7( span_7 );
-			span_7.className = "mint-bar";
-			span_7.style.cssText = span_7_style_value = "width:" + ( state.mintPercentage ) + "%";
-			encapsulateStyles$7( span_8 );
-			span_8.className = "middle-mark";
-			span_9.className = "turnout sans-light";
+			span_6.className = "middle-mark";
+			span_7.className = "turnout sans-light";
 		},
 
 		mount: function ( target, anchor ) {
@@ -3094,43 +3149,49 @@ function create_main_fragment$13 ( state, component ) {
 			appendNode( span, div_2 );
 			appendNode( text, span );
 			appendNode( text_1, div_2 );
-			appendNode( span_1, div_2 );
-			appendNode( text_2, span_1 );
-			appendNode( text_3, span_1 );
+			appendNode( h2, div_2 );
+			appendNode( text_2, h2 );
+			appendNode( text_3, h2 );
 			appendNode( text_4, div_2 );
-			appendNode( span_2, div_2 );
-			appendNode( text_5, span_2 );
-			appendNode( text_6, span_2 );
-			appendNode( text_8, div_1 );
+			appendNode( span_1, div_2 );
+			appendNode( text_5, span_1 );
+			appendNode( text_7, div_1 );
 			appendNode( div_3, div_1 );
+			appendNode( span_2, div_3 );
+			appendNode( text_8, span_2 );
+			appendNode( text_9, div_3 );
 			appendNode( span_3, div_3 );
-			appendNode( text_9, span_3 );
 			appendNode( text_10, span_3 );
 			appendNode( text_11, div_3 );
-			appendNode( span_4, div_3 );
-			appendNode( text_12, span_4 );
-			appendNode( text_13, span_4 );
-			appendNode( text_14, div_3 );
-			appendNode( span_5, div_3 );
-			appendNode( text_15, span_5 );
-			appendNode( text_18, div );
+			appendNode( h2_1, div_3 );
+			appendNode( text_12, h2_1 );
+			appendNode( text_13, h2_1 );
+			appendNode( text_16, div );
 			appendNode( div_4, div );
+			appendNode( span_4, div_4 );
+			appendNode( text_17, div_4 );
+			appendNode( span_5, div_4 );
+			appendNode( text_18, div_4 );
 			appendNode( span_6, div_4 );
-			appendNode( text_19, div_4 );
-			appendNode( span_7, div_4 );
-			appendNode( text_20, div_4 );
-			appendNode( span_8, div_4 );
-			appendNode( text_22, div );
-			appendNode( span_9, div );
-			appendNode( text_23, span_9 );
-			appendNode( text_24, span_9 );
-			appendNode( text_25, span_9 );
-			appendNode( text_26, span_9 );
-			appendNode( text_27, span_9 );
-			appendNode( text_28, span_9 );
+			appendNode( text_20, div );
+			appendNode( span_7, div );
+			appendNode( text_21, span_7 );
+			appendNode( text_22, span_7 );
+			appendNode( text_23, span_7 );
+			appendNode( text_24, span_7 );
+			appendNode( text_25, span_7 );
+			appendNode( text_26, span_7 );
 		},
 
 		update: function ( changed, state ) {
+			if ( span_style_value !== ( span_style_value = "color:" + ( state.mintColor ) ) ) {
+				span.style.cssText = span_style_value;
+			}
+
+			if ( h2_style_value !== ( h2_style_value = "color:" + ( state.mintColor ) ) ) {
+				h2.style.cssText = h2_style_value;
+			}
+
 			if ( text_2_value !== ( text_2_value = state.mintPercentage ) ) {
 				text_2.data = text_2_value;
 			}
@@ -3139,28 +3200,40 @@ function create_main_fragment$13 ( state, component ) {
 				text_5.data = text_5_value;
 			}
 
-			if ( text_9_value !== ( text_9_value = state.heatPercentage ) ) {
-				text_9.data = text_9_value;
+			if ( span_2_style_value !== ( span_2_style_value = "color:" + ( state.heatColor ) ) ) {
+				span_2.style.cssText = span_2_style_value;
 			}
 
-			if ( text_12_value !== ( text_12_value = state.heatTotal ) ) {
+			if ( text_10_value !== ( text_10_value = state.heatTotal ) ) {
+				text_10.data = text_10_value;
+			}
+
+			if ( h2_1_style_value !== ( h2_1_style_value = "color:" + ( state.heatColor ) ) ) {
+				h2_1.style.cssText = h2_1_style_value;
+			}
+
+			if ( text_12_value !== ( text_12_value = state.heatPercentage ) ) {
 				text_12.data = text_12_value;
 			}
 
-			if ( span_7_style_value !== ( span_7_style_value = "width:" + ( state.mintPercentage ) + "%" ) ) {
-				span_7.style.cssText = span_7_style_value;
+			if ( span_4_style_value !== ( span_4_style_value = "background-color:" + ( state.heatColor ) ) ) {
+				span_4.style.cssText = span_4_style_value;
 			}
 
-			if ( text_23_value !== ( text_23_value = state.honiBoothsCounted ) ) {
+			if ( span_5_style_value !== ( span_5_style_value = "width:" + ( state.mintPercentage ) + "%; background-color:" + ( state.mintColor ) ) ) {
+				span_5.style.cssText = span_5_style_value;
+			}
+
+			if ( text_21_value !== ( text_21_value = state.honiBoothsCounted ) ) {
+				text_21.data = text_21_value;
+			}
+
+			if ( text_23_value !== ( text_23_value = state.numberOfBooths ) ) {
 				text_23.data = text_23_value;
 			}
 
-			if ( text_25_value !== ( text_25_value = state.numberOfBooths ) ) {
+			if ( text_25_value !== ( text_25_value = state.honiTurnout * 100 ) ) {
 				text_25.data = text_25_value;
-			}
-
-			if ( text_27_value !== ( text_27_value = state.honiTurnout * 100 ) ) {
-				text_27.data = text_27_value;
 			}
 		},
 
@@ -3239,10 +3312,6 @@ var template$14 = (function () {
   }
 }());
 
-function encapsulateStyles$8 ( node ) {
-	setAttribute( node, 'svelte-1655102491', '' );
-}
-
 function create_main_fragment$14 ( state, component ) {
 	var table, thead, th, text, text_1, th_1, text_2, text_3, th_2, text_4, text_5, th_3, text_6, text_7, th_4, text_8, text_9, th_5, text_10, text_11, th_6, text_12, text_13, th_7, text_14, text_16;
 
@@ -3286,11 +3355,6 @@ function create_main_fragment$14 ( state, component ) {
 			for ( var i = 0; i < each_block_iterations.length; i += 1 ) {
 				each_block_iterations[i].create();
 			}
-			this.hydrate();
-		},
-
-		hydrate: function ( nodes ) {
-			encapsulateStyles$8( table );
 		},
 
 		mount: function ( target, anchor ) {
@@ -3547,11 +3611,11 @@ var template$12 = (function () {
         const toggleElement = this.refs.toggleText;
         if (displayTable) {
           this.set({displayTable:false});
-          toggleElement.textContent = 'Full results';
+          toggleElement.textContent = '+ Full results';
           this.fire('sendTheHeight');
         } else {
           this.set({displayTable:true});
-          toggleElement.textContent = 'Close full results';
+          toggleElement.textContent = '- Full results';
           this.fire('sendTheHeight');
         }
       }
@@ -3564,13 +3628,15 @@ var template$12 = (function () {
 }());
 
 function create_main_fragment$12 ( state, component ) {
-	var section, h2, text, text_1, text_2, div, raw_value, raw_before, raw_after, text_3, div_1, span, text_4, text_5;
+	var section, h2, text, text_1, text_2, div, raw_value, raw_before, raw_after, text_3, span, text_4, text_5;
 
 	var honibars = new HoniBars({
 		_root: component._root,
 		data: {
 			mintTotal: state.mintTotal,
 			heatTotal: state.heatTotal,
+			mintColor: state.collatedResults.colors["Mint"],
+			heatColor: state.collatedResults.colors["Heat"],
 			numberOfBooths: state.collatedResults.copy[0].numberofbooths,
 			honiBoothsCounted: state.collatedResults.copy[0].honiboothscounted,
 			honiTurnout: state.collatedResults.copy[0].honiturnout
@@ -3596,9 +3662,8 @@ function create_main_fragment$12 ( state, component ) {
 			raw_before = createElement( 'noscript' );
 			raw_after = createElement( 'noscript' );
 			text_3 = createText( "\n\n  " );
-			div_1 = createElement( 'div' );
 			span = createElement( 'span' );
-			text_4 = createText( "Full results" );
+			text_4 = createText( "+ Full results" );
 			text_5 = createText( "\n  " );
 			if ( if_block ) if_block.create();
 			this.hydrate();
@@ -3607,8 +3672,8 @@ function create_main_fragment$12 ( state, component ) {
 		hydrate: function ( nodes ) {
 			section.className = "results-section";
 			div.className = "analysis";
-			div_1.className = "toggle";
-			addListener( div_1, 'click', click_handler );
+			span.className = "button";
+			addListener( span, 'click', click_handler );
 		},
 
 		mount: function ( target, anchor ) {
@@ -3623,8 +3688,7 @@ function create_main_fragment$12 ( state, component ) {
 			appendNode( raw_after, div );
 			raw_before.insertAdjacentHTML( 'afterend', raw_value = state.collatedResults.copy[0].honianalysis );
 			appendNode( text_3, section );
-			appendNode( div_1, section );
-			appendNode( span, div_1 );
+			appendNode( span, section );
 			component.refs.toggleText = span;
 			appendNode( text_4, span );
 			appendNode( text_5, section );
@@ -3636,6 +3700,8 @@ function create_main_fragment$12 ( state, component ) {
 
 			if ( 'mintTotal' in changed ) honibars_changes.mintTotal = state.mintTotal;
 			if ( 'heatTotal' in changed ) honibars_changes.heatTotal = state.heatTotal;
+			if ( 'collatedResults' in changed ) honibars_changes.mintColor = state.collatedResults.colors["Mint"];
+			if ( 'collatedResults' in changed ) honibars_changes.heatColor = state.collatedResults.colors["Heat"];
 			if ( 'collatedResults' in changed ) honibars_changes.numberOfBooths = state.collatedResults.copy[0].numberofbooths;
 			if ( 'collatedResults' in changed ) honibars_changes.honiBoothsCounted = state.collatedResults.copy[0].honiboothscounted;
 			if ( 'collatedResults' in changed ) honibars_changes.honiTurnout = state.collatedResults.copy[0].honiturnout;
@@ -3674,7 +3740,7 @@ function create_main_fragment$12 ( state, component ) {
 
 		destroy: function () {
 			honibars.destroy( false );
-			removeListener( div_1, 'click', click_handler );
+			removeListener( span, 'click', click_handler );
 			if ( component.refs.toggleText === span ) component.refs.toggleText = null;
 			if ( if_block ) if_block.destroy();
 		}
@@ -3998,6 +4064,10 @@ function recompute$10 ( state, newState, oldState, isInitial ) {
 	if ( isInitial || ( 'publishedPosts' in newState && differs( state.publishedPosts, oldState.publishedPosts ) ) ) {
 		state.visiblePosts = newState.visiblePosts = template$15.computed.visiblePosts( state.publishedPosts );
 	}
+
+	if ( isInitial || ( 'publishedPosts' in newState && differs( state.publishedPosts, oldState.publishedPosts ) ) || ( 'visiblePosts' in newState && differs( state.visiblePosts, oldState.visiblePosts ) ) ) {
+		state.loadMoreButtonVisible = newState.loadMoreButtonVisible = template$15.computed.loadMoreButtonVisible( state.publishedPosts, state.visiblePosts );
+	}
 }
 
 var template$15 = (function () {
@@ -4016,6 +4086,9 @@ var template$15 = (function () {
       visiblePosts: publishedPosts => {
         // return the most recent 20 posts
         return publishedPosts.slice(0, 20);
+      },
+      loadMoreButtonVisible: (publishedPosts, visiblePosts) => {
+        return visiblePosts.length == publishedPosts.length ? false : true;
       }
     },
 
@@ -4040,12 +4113,12 @@ var template$15 = (function () {
   }
 }());
 
-function encapsulateStyles$9 ( node ) {
-	setAttribute( node, 'svelte-3914131317', '' );
+function encapsulateStyles$8 ( node ) {
+	setAttribute( node, 'svelte-872623725', '' );
 }
 
 function create_main_fragment$15 ( state, component ) {
-	var section, h2, text_value, text, text_1, div, each_block_lookup = Object.create( null ), each_block_head, each_block_last, text_2, button, text_3;
+	var section, div, h2, text_value, text, text_1, div_1, each_block_lookup = Object.create( null ), each_block_head, each_block_last, text_2;
 
 	var each_block_value = state.visiblePosts;
 
@@ -4068,18 +4141,16 @@ function create_main_fragment$15 ( state, component ) {
 		});
 	}
 
-	function click_handler ( event ) {
-		var state = component.get();
-		component.loadMorePosts(state.visiblePosts, state.publishedPosts);
-	}
+	var if_block_1 = (state.loadMoreButtonVisible) && create_if_block_1$2( state, component );
 
 	return {
 		create: function () {
 			section = createElement( 'section' );
+			div = createElement( 'div' );
 			h2 = createElement( 'h2' );
 			text = createText( text_value = state.blogData.copy[0].blogtitle );
-			text_1 = createText( "\n  " );
-			div = createElement( 'div' );
+			text_1 = createText( "\n    " );
+			div_1 = createElement( 'div' );
 
 			var each_block_iteration = each_block_head;
 			while ( each_block_iteration ) {
@@ -4087,35 +4158,37 @@ function create_main_fragment$15 ( state, component ) {
 				each_block_iteration = each_block_iteration.next;
 			}
 
-			text_2 = createText( "\n    " );
-			button = createElement( 'button' );
-			text_3 = createText( "Load more posts" );
+			text_2 = createText( "\n      " );
+			if ( if_block_1 ) if_block_1.create();
 			this.hydrate();
 		},
 
 		hydrate: function ( nodes ) {
 			section.className = "blog-container";
-			encapsulateStyles$9( div );
-			div.className = "stream-container";
-			addListener( button, 'click', click_handler );
+			encapsulateStyles$8( div );
+			div.className = "flex-wrapper";
+			encapsulateStyles$8( h2 );
+			h2.className = "blog-heading";
+			encapsulateStyles$8( div_1 );
+			div_1.className = "stream-container";
 		},
 
 		mount: function ( target, anchor ) {
 			insertNode( section, target, anchor );
-			appendNode( h2, section );
-			appendNode( text, h2 );
-			appendNode( text_1, section );
 			appendNode( div, section );
+			appendNode( h2, div );
+			appendNode( text, h2 );
+			appendNode( text_1, div );
+			appendNode( div_1, div );
 
 			var each_block_iteration = each_block_head;
 			while ( each_block_iteration ) {
-				each_block_iteration.intro( div, null );
+				each_block_iteration.intro( div_1, null );
 				each_block_iteration = each_block_iteration.next;
 			}
 
-			appendNode( text_2, div );
-			appendNode( button, div );
-			appendNode( text_3, button );
+			appendNode( text_2, div_1 );
+			if ( if_block_1 ) if_block_1.mount( div_1, null );
 		},
 
 		update: function ( changed, state ) {
@@ -4152,12 +4225,12 @@ function create_main_fragment$15 ( state, component ) {
 							each_block_iteration.discard = false;
 							each_block_iteration.last = each_block_last;
 
-							if (!each_block_expected) each_block_iteration.mount( div, text_2 );
+							if (!each_block_expected) each_block_iteration.mount( div_1, text_2 );
 						} else {
 							// key is being inserted
 							each_block_iteration = each_block_lookup[key] = create_each_block$5( state, each_block_value, each_block_value[i], i, component, key );
 							each_block_iteration.create();
-							each_block_iteration.intro( div, each_block_expected.first );
+							each_block_iteration.intro( div_1, each_block_expected.first );
 
 							each_block_expected.last = each_block_iteration;
 							each_block_iteration.next = each_block_expected;
@@ -4168,17 +4241,17 @@ function create_main_fragment$15 ( state, component ) {
 					if ( each_block_iteration ) {
 						each_block_iteration.discard = false;
 						each_block_iteration.next = null;
-						each_block_iteration.mount( div, text_2 );
+						each_block_iteration.mount( div_1, text_2 );
 					} else {
 						each_block_iteration = each_block_lookup[key] = create_each_block$5( state, each_block_value, each_block_value[i], i, component, key );
 						each_block_iteration.create();
-						each_block_iteration.intro( div, text_2 );
+						each_block_iteration.intro( div_1, text_2 );
 					}
 				}
 
 				if ( each_block_last ) each_block_last.next = each_block_iteration;
 				each_block_iteration.last = each_block_last;
-				each_block_iteration.intro( div, text_2 );
+				each_block_iteration.intro( div_1, text_2 );
 				each_block_last = each_block_iteration;
 			}
 
@@ -4196,10 +4269,23 @@ function create_main_fragment$15 ( state, component ) {
 			}
 
 			each_block_head = each_block_lookup[each_block_value[0] && each_block_value[0].body];
+
+			if ( state.loadMoreButtonVisible ) {
+				if ( !if_block_1 ) {
+					if_block_1 = create_if_block_1$2( state, component );
+					if_block_1.create();
+					if_block_1.mount( div_1, null );
+				}
+			} else if ( if_block_1 ) {
+				if_block_1.unmount();
+				if_block_1.destroy();
+				if_block_1 = null;
+			}
 		},
 
 		unmount: function () {
 			detachNode( section );
+			if ( if_block_1 ) if_block_1.unmount();
 		},
 
 		destroy: function () {
@@ -4209,7 +4295,7 @@ function create_main_fragment$15 ( state, component ) {
 				each_block_iteration = each_block_iteration.next;
 			}
 
-			removeListener( button, 'click', click_handler );
+			if ( if_block_1 ) if_block_1.destroy();
 		}
 	};
 }
@@ -4227,23 +4313,23 @@ function create_each_block$5 ( state, each_block_value, post, post_index, compon
 		create: function () {
 			first = createComment();
 			if ( if_block ) if_block.create();
-			text = createText( "\n      " );
+			text = createText( "\n        " );
 			article = createElement( 'article' );
 			h3 = createElement( 'h3' );
 			text_1 = createText( text_1_value = post.heading );
-			text_2 = createText( "\n        " );
+			text_2 = createText( "\n          " );
 			p = createElement( 'p' );
 			text_3 = createText( text_3_value = post.meta );
-			text_4 = createText( "\n        " );
+			text_4 = createText( "\n          " );
 			raw_before = createElement( 'noscript' );
 			raw_after = createElement( 'noscript' );
 			this.hydrate();
 		},
 
 		hydrate: function ( nodes ) {
-			encapsulateStyles$9( article );
+			encapsulateStyles$8( article );
 			article.className = "blogPost";
-			encapsulateStyles$9( h3 );
+			encapsulateStyles$8( h3 );
 			h3.className = "blogPost-heading";
 			p.className = "sans-light";
 			this.first = first;
@@ -4348,7 +4434,7 @@ function create_if_block$6 ( state, each_block_value, post, post_index, componen
 		},
 
 		hydrate: function ( nodes ) {
-			encapsulateStyles$9( span );
+			encapsulateStyles$8( span );
 			span.className = "highlight-bar";
 		},
 
@@ -4361,6 +4447,42 @@ function create_if_block$6 ( state, each_block_value, post, post_index, componen
 		},
 
 		destroy: noop
+	};
+}
+
+function create_if_block_1$2 ( state, component ) {
+	var span, text;
+
+	function click_handler ( event ) {
+		var state = component.get();
+		component.loadMorePosts(state.visiblePosts, state.publishedPosts);
+	}
+
+	return {
+		create: function () {
+			span = createElement( 'span' );
+			text = createText( "Load more posts" );
+			this.hydrate();
+		},
+
+		hydrate: function ( nodes ) {
+			encapsulateStyles$8( span );
+			span.className = "button load-more";
+			addListener( span, 'click', click_handler );
+		},
+
+		mount: function ( target, anchor ) {
+			insertNode( span, target, anchor );
+			appendNode( text, span );
+		},
+
+		unmount: function () {
+			detachNode( span );
+		},
+
+		destroy: function () {
+			removeListener( span, 'click', click_handler );
+		}
 	};
 }
 
@@ -4443,7 +4565,7 @@ var template$1 = (function () {
 }());
 
 function encapsulateStyles ( node ) {
-	setAttribute( node, 'svelte-1685356031', '' );
+	setAttribute( node, 'svelte-3686882972', '' );
 }
 
 function create_main_fragment$1 ( state, component ) {
@@ -4698,8 +4820,8 @@ TabBar.prototype.teardown = TabBar.prototype.destroy = function destroy ( detach
 	this._destroyed = true;
 };
 
-function encapsulateStyles$10 ( node ) {
-	setAttribute( node, 'svelte-732869313', '' );
+function encapsulateStyles$9 ( node ) {
+	setAttribute( node, 'svelte-2832525298', '' );
 }
 
 function create_main_fragment$16 ( state, component ) {
@@ -4715,7 +4837,7 @@ function create_main_fragment$16 ( state, component ) {
 		},
 
 		hydrate: function ( nodes ) {
-			encapsulateStyles$10( footer );
+			encapsulateStyles$9( footer );
 			div.className = "sans-dark";
 		},
 
@@ -4882,8 +5004,8 @@ var template$16 = (function () {
   }
 }());
 
-function encapsulateStyles$11 ( node ) {
-	setAttribute( node, 'svelte-3023062943', '' );
+function encapsulateStyles$10 ( node ) {
+	setAttribute( node, 'svelte-1655038123', '' );
 }
 
 function create_main_fragment$17 ( state, component ) {
@@ -4910,15 +5032,15 @@ function create_main_fragment$17 ( state, component ) {
 		},
 
 		hydrate: function ( nodes ) {
-			encapsulateStyles$11( header );
-			encapsulateStyles$11( svg );
+			encapsulateStyles$10( header );
+			encapsulateStyles$10( svg );
 			setAttribute( svg, 'xmlns', "http://www.w3.org/2000/svg" );
 			setAttribute( svg, 'id', "header-logo" );
 			setAttribute( svg, 'viewBox', "0 0 297.2 72.8" );
 			setAttribute( path, 'd', "M23 72.6c-7.5 0-13.3-1.7-17.6-5C1.8 64.8 0 61.6 0 58c0-1.8.6-3.4 1.7-4.6 1-1.2 2.7-1.8 4.6-1.8 2.6 0 4.6 1.4 5.8 4 1.8 3.7 5.6 5.5 11.5 5.5 5 0 10-1 14.7-3.2 5-2.3 7.4-4.7 7.4-7.4 0-3.7-1.5-6-4.6-7.3-2.2-.8-6.5-1.3-13-1.4-5.2 0-9.7-1-13.8-3-5.4-2.3-8-5.8-8-10.4 0-5.7 3-11 9.2-15.7 6-4.8 12.7-7.2 20-7.2 2.8 0 6.3.7 10.6 2 5.3 1.6 8 3.5 8 5.7 0 1.5-.6 3-1.7 4-1.2 1.4-2.7 2-4.5 2-1.4 0-3.4-.2-6.2-.8-2.7-.6-4.8-1-6.2-1-3.8 0-7.4 1-10.8 2.8-3.5 1.8-5.3 3.8-5.3 6 0 1 .5 2 1.6 2.7 1 .7 2.6 1.2 4.7 1.5l11.2.6c6.4.5 11.6 2.3 15.4 5.5 4.2 3.5 6.3 8.4 6.3 14.6 0 7.5-4.3 13.2-13 17-6.7 3-14.2 4.6-22.7 4.6zM108.2 70.4c-1.6 0-3-.6-4.4-1.8-8.8-8.4-18.6-14.2-29.3-17.4l.5 14.2c0 1.7-.6 3-1.8 4.2-1.2 1.2-2.6 1.7-4.4 1.7-1.8 0-3.2-.6-4.4-1.7-1.2-1.2-1.8-2.6-1.8-4.2v-10c.2-4.3.2-7.6.2-9.8V10c0-1.8.7-3.5 1.8-5C66 3 68.2 2 70.8 2l11 .8c4 .5 7.6 1.5 10.5 3 12.5 6.3 18.8 14 18.8 23.5 0 3.8-1.2 7.2-3.8 10.2-2.6 3-6.6 5.4-11.8 7.5 7.8 4.3 13.6 8.8 17.6 13.3 1 1.2 1.5 2.5 1.5 4s-.6 3-1.8 4c-1.3 1.3-2.8 2-4.5 2zM80 15c-.2 0-2 0-5.2-.4V38h2c7 0 12.4-1 16-2.7 1.4-.8 2.8-1.8 4-3 1.2-1.3 2-2.2 2-3 0-3.2-2.2-6.4-6.4-9.4-4-3-8-4.5-12.4-5zM161.4 23c-2.6 0-4.6-1.4-6-4.2-.5-1.3-1-2-1.7-2.4-.4-.2-1.6-.3-3.5-.3-3.7 0-8 3-12.8 8.7-6.8 8-10.2 15.6-10.2 22.6 0 3.2 1 6 3.2 8.2 2 2.3 4.7 3.4 7.7 3.4s6-1 9-2.4l6.7-4.3c2.3-1.5 4-2.3 5.2-2.3 1.7 0 3.2.6 4.4 2 1 1 1.7 2.5 1.7 4 0 1.7-.7 3.2-2.2 4.5-8 6.8-16.3 10.2-24.7 10.2-6.5 0-12-2.4-16.6-7.2C117 59 115 53.5 115 47c0-9.7 4.2-19.8 12.8-30 7.3-8.7 14.8-13 22.4-13h3.5l2.8.5c1.3-1.3 2.8-2 4.7-2 3 0 4.8 1.8 5.5 5.3.5 2.5.7 5.3.7 8.6 0 1.5-.4 2.8-1.3 4-1 1.8-2.5 2.6-4.6 2.6zM202.4 21.7c-1.7 0-3-.7-4.2-2-.8-1-1.3-2-1.5-3.2-1-6.4-1.5-10-1.5-11 0-1.7.5-3 1.5-4s2.3-1.5 4-1.5c3.2 0 5 1.6 5.6 5 1 6.2 1.5 10 1.5 11.3 0 1.6-.5 3-1.5 4s-2.3 1.4-4 1.4zM239.4 70H222c-5.6 0-8.4-1.8-8.4-5.3 0-4 3-6 9.3-6h1.8v-39c-2.6 1.8-4.2 2.6-5 2.6-1.6 0-3-.6-4.3-1.8-1.2-1.2-1.8-2.5-1.8-4 0-1.7 1-3.4 3-5l5-3.7 5.4-4.3c2.3-1.6 4.4-2.4 6.5-2.4 2.6 0 4 1.7 4 5 0 3.4 0 8.3-.4 14.7s-.3 15.4-.3 27.2v10.6h3c1.6 0 3 .5 4.2 1.6 1 1 1.6 2.4 1.6 4 0 1.7-.6 3-1.7 4.2-1.5 1-3 1.5-4.6 1.5zM277.5 15.5L259 15c-2 0-5.5 0-10-.2-3.8-.3-5.8-2.2-5.8-5.7 0-1.5.6-3 1.8-4 1.2-1 2.6-1.6 4.3-1.6 3.7 0 9.3 0 16.7.3l16.7.3h8c1.7 0 3 .3 4.3 1 1.5.7 2.2 1.8 2.2 3.3 0 1.6-1 3.5-2.6 5.8l-4.4 5c-3.7 4-7.2 9.2-10.3 15.2-1 2-3.7 7.4-8 16.5-.6 1.2-1.8 4.5-3.7 10-1.5 4-3 7-4.5 9.4-1.2 1.8-2.8 2.6-5 2.6-1.5 0-3-.5-4.2-1.6-1.3-1-2-2.4-2-4 0-1.4 1-4.3 3-9 3.3-7.3 6.4-14.7 9.6-22 3.8-8.5 8-15.4 12.3-20.5z" );
-			encapsulateStyles$11( span );
+			encapsulateStyles$10( span );
 			span.className = "live-time";
-			encapsulateStyles$11( div );
+			encapsulateStyles$10( div );
 			div.className = "standfirst";
 		},
 
@@ -30185,6 +30307,8 @@ const appData = {
 		'Socialist Alternative': '#d98a01',
 		'Solidarity': '#ff00f0',
 		'Blank': '#eeeeee',
+		'Mint': '#71d39d',
+		'Heat': '#ed1b24',
 	},
 	results: {
 		blog: [
@@ -30198,7 +30322,7 @@ const appData = {
 		],
 		copy: [{
 			title: 'default',
-			displayresults: '1',
+			displayresults: '0',
 		}],
 		council: [
 			{ faction: 'surprise' }
