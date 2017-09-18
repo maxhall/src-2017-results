@@ -39,11 +39,17 @@ export default {
 
 		commonjs({
 			ignoreGlobal: true,
+			namedExports: {
+		    // left-hand side can be an absolute path, a path
+		    // relative to the current directory, or the name
+		    // of a module in node_modules
+		    'node_modules/buffer-es6/index.js': [ 'Buffer' ]
+		  }
 		}),
 		globals(),
 		builtins(),
 		babel({
-			exclude: 'node_modules/**' // only transpile our source code
+			//exclude: 'node_modules/**' // only transpile our source code
 		}),
 
 		// If we're building for production (npm run build
