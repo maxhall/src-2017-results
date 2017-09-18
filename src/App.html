@@ -1,6 +1,9 @@
 <:Window bind:innerWidth='appWidth'/>
 
-<Header headerStandfirst='{{collatedResults.copy[0].headerstandfirst}}'/>
+<Header
+	headerStandfirst='{{collatedResults.copy[0].headerstandfirst}}'
+	newData='{{newData}}'
+/>
 {{#if '1'===collatedResults.copy[0].displayresults}}
 	{{#if appWidth < 900 }}
 		<TabBar
