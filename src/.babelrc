@@ -2,9 +2,10 @@
   "presets": [
     ["env", {
       "targets": {
-        "browsers": ["last 2 versions", "safari >= 6"]
+        "browsers": ["> 1% in AU"]
       },
-      "modules": false
+      "modules": false,
+      "debug": true
     }]
   ]
 }
