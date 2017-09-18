@@ -43,13 +43,13 @@ export default {
 		globals(),
 		builtins(),
 		babel({
-			exclude: 'node_modules/**' // only transpile our source code
+			//exclude: 'node_modules/**' // only transpile our source code
 		}),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), transpile and minify
 		production && babel({
-			exclude: 'node_modules/**' // only transpile our source code
+			//exclude: 'node_modules/**' // only transpile our source code
     }),
 		production && uglify({}, minify)
 	]
