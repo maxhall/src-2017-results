@@ -2,9 +2,7 @@
 
 * Styles to clean up
   * Height of the blog
-  * Full results tables are busting out of their width
   * Fix all the colors for consistent lightness
-  * Replace elected "1" with a tick in the results tables
   * Better looking +/- icon on the expander button
 * Need to Fix
   * Default data when no server connected

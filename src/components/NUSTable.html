@@ -8,11 +8,15 @@
   </thead>
   {{#each nusTableData as row }}
     <tr>
-        <td class="candidate-name">{{row.candidate}}</td>
+        <td class="candidate-name" style="background-color:{{row.factionColor}};">{{row.candidate}}</td>
         <td>{{row.faction}}</td>
         <td>{{row.ticket}}</td>
         <td>{{row.votes}}</td>
-        <td>{{row.elected}}</td>
+        <td class="candidate-elected" style="background-color:{{row.factionColor}};">
+          <svg class="icon {{row.tickClass}}" id="icon-checkmark" viewBox="0 0 32 32">
+            <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z"></path>
+          </svg>
+        </td>
     </tr>
   {{/each}}
 </table>
@@ -30,7 +34,26 @@
       }
     },
     computed: {
-      nusTableData: collatedResults => collatedResults.nus
+      nusTableData: collatedResults => {
+        const colourAugmentedRowArray = collatedResults.nus.map((object) => {
+          const augmentedCandidate = object;
+          if ('1'===augmentedCandidate.elected) {
+            const candidateFactionColor = collatedResults.colors[object.faction];
+            augmentedCandidate['factionColor'] = candidateFactionColor;
+            augmentedCandidate['tickClass'] = 'icon--show';
+          } else {
+            const candidateFactionColor = '';
+            augmentedCandidate['factionColor'] = candidateFactionColor;
+            augmentedCandidate['tickClass'] = '';
+          };
+          return augmentedCandidate;
+        });
+        console.log(colourAugmentedRowArray);
+        const sortedRowArray = colourAugmentedRowArray.sort((a, b) => {
+          return Number(b.votes) - Number(a.votes);
+        })
+        return sortedRowArray;
+      },
     },
   }
 </script>

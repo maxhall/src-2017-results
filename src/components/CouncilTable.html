@@ -12,15 +12,17 @@
         <td>{{row.faction}}</td>
         <td>{{row.ticket}}</td>
         <td>{{row.votes}}</td>
-        <td style="background-color:{{row.factionColor}};">{{row.elected}}</td>
+        <td class="candidate-elected" style="background-color:{{row.factionColor}};">
+          <svg class="icon {{row.tickClass}}" id="icon-checkmark" viewBox="0 0 32 32">
+            <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z"></path>
+          </svg>
+        </td>
     </tr>
   {{/each}}
 </table>
 
 <style>
-  table {
-    width: 100%;
-  }
+
 </style>
 <script>
   export default {
@@ -35,9 +37,11 @@
           if ('1'===augmentedCandidate.elected) {
             const candidateFactionColor = collatedResults.colors[object.faction];
             augmentedCandidate['factionColor'] = candidateFactionColor;
+            augmentedCandidate['tickClass'] = 'icon--show';
           } else {
             const candidateFactionColor = '';
             augmentedCandidate['factionColor'] = candidateFactionColor;
+            augmentedCandidate['tickClass'] = '';
           };
           return augmentedCandidate;
         });

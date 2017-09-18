@@ -15,7 +15,7 @@
 
   <span ref:toggleText on:click='toggleTableDisplay(displayTable)' class="button">+ Full results</span>
   {{#if displayTable}}
-    <div transition:slide>
+    <div transition:slide class="table-wrapper">
       <HoniTable tableData='{{tableData}}' collatedResults='{{collatedResults}}'/>
     </div>
   {{/if}}

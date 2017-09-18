@@ -35,6 +35,9 @@ h3 {
 	margin: 0 0 1rem;
 }
 
+.table-wrapper {
+	overflow: scroll;
+}
 table {
 	width: 100%;
   border: 1px solid #eee;
@@ -197,4 +200,21 @@ button:focus {
 	margin: 0 auto;
 	display: block;
 	border: 1px solid black;
+}
+
+.candidate-elected {
+  height: 100%;
+}
+
+.icon {
+  display: none;
+  width: auto;
+  margin: auto;
+  height: 1em;
+  stroke-width: 0;
+  stroke: #333;
+  fill: #333;
+}
+.icon--show {
+  display: block;
 }
