@@ -30286,6 +30286,7 @@ var pym_v1 = createCommonjsModule(function (module) {
 });
 });
 
+// Set up the responsive iframe
 const pymChild = new pym_v1.Child({ renderCallback: () => { console.log('pym!');}, polling: 500 });
 pymChild.sendHeight();
 
@@ -30399,7 +30400,7 @@ window.app.on('sendTheHeight', event => {
 });
 
 // When any new data is received it's passed down the component chain
-const socket = index$2('localhost:5000');
+const socket = index$2('src-2017-results.herokuapp.com');
 
 socket.on('data', function(data){
 	console.log(data);
