@@ -1,7 +1,7 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import buble from 'rollup-plugin-buble';
+import babel from 'rollup-plugin-babel';
 import uglify from 'rollup-plugin-uglify';
 import { minify } from 'uglify-es';
 import builtins from 'rollup-plugin-node-builtins';
@@ -42,10 +42,15 @@ export default {
 		}),
 		globals(),
 		builtins(),
+		babel({
+			exclude: 'node_modules/**' // only transpile our source code
+		}),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), transpile and minify
-		production && buble({ exclude: 'node_modules/**' }),
+		production && babel({
+			exclude: 'node_modules/**' // only transpile our source code
+    }),
 		production && uglify({}, minify)
 	]
 };
