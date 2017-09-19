@@ -114,14 +114,12 @@ window.app = new App({
 
 window.app.on('sendTheHeight', event => {
 	pymChild.sendHeight();
-	console.log('Height not sent');
 });
 
 // When any new data is received it's passed down the component chain
 const socket = io('src-2017-results.herokuapp.com');
 
 socket.on('data', function(data){
-	console.log(data);
 	window.app.set({'hasConnection': true});
 	window.app.set({'results': data});
 	window.app.set({'newData': true});
