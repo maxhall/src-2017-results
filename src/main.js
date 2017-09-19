@@ -14,6 +14,7 @@ pymChild.sendHeight();
  */
 const appData = {
 	newData: false,
+	hasConnection: false,
 	colors: {
 		'NLS': '#753da6',
 		'Grassroots': '#008938',
@@ -121,6 +122,7 @@ const socket = io('src-2017-results.herokuapp.com');
 
 socket.on('data', function(data){
 	console.log(data);
+	window.app.set({'hasConnection': true});
 	window.app.set({'results': data});
 	window.app.set({'newData': true});
 	//setTimeout(() => {window.app.set({'newData': false})}, 3000);

@@ -1,44 +1,49 @@
 <:Window bind:innerWidth='appWidth'/>
 
-<Header
-	headerStandfirst='{{collatedResults.copy[0].headerstandfirst}}'
-	newData='{{newData}}'
-	indicateLive='{{collatedResults.copy[0].indicatelive}}'
-/>
-{{#if '1'===collatedResults.copy[0].displayresults}}
-	{{#if appWidth < 900 }}
-		<TabBar
-			currentPane='results'
-			collatedResults='{{collatedResults}}'
-			blogData='{{blogData}}'
-			on:sendTheHeight='pymUpdateHeight()'
-		/>
-	{{else}}
-		<article class="content-wrapper">
-			<Results
+{{#if !hasConnection}}
+	<h1 class="loading">Loading...</h1>
+{{else}}
+	<Header
+		headerStandfirst='{{collatedResults.copy[0].headerstandfirst}}'
+		newData='{{newData}}'
+		indicateLive='{{collatedResults.copy[0].indicatelive}}'
+	/>
+	{{#if '1'===collatedResults.copy[0].displayresults}}
+		{{#if appWidth < 900 }}
+			<TabBar
+				currentPane='results'
 				collatedResults='{{collatedResults}}'
+				blogData='{{blogData}}'
 				on:sendTheHeight='pymUpdateHeight()'
 			/>
+		{{else}}
+			<article class="content-wrapper">
+				<Results
+					collatedResults='{{collatedResults}}'
+					on:sendTheHeight='pymUpdateHeight()'
+				/>
+				<Blog
+					blogData='{{blogData}}'
+					on:sendTheHeight='pymUpdateHeight()'
+				/>
+			</article>
+		{{/if}}
+	{{else}}
+		<div class="blog-only-wrapper">
 			<Blog
 				blogData='{{blogData}}'
 				on:sendTheHeight='pymUpdateHeight()'
 			/>
-		</article>
+		</div>
 	{{/if}}
-{{else}}
-	<div class="blog-only-wrapper">
-		<Blog
-			blogData='{{blogData}}'
-			on:sendTheHeight='pymUpdateHeight()'
-		/>
-	</div>
+	<Footer footnotes='{{collatedResults.copy[0].footnotes}}'/>
 {{/if}}
-<Footer footnotes='{{collatedResults.copy[0].footnotes}}'/>
 
 <style>
-
+	.loading {
+		text-align: center;
+	}
 </style>
-
 <script>
 	import TabBar from './components/TabBar.html';
 	import Footer from './components/Footer.html';
