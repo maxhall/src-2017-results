@@ -133,6 +133,7 @@ button:focus {
 }
 
 .blog-container {
+	width: auto;
 }
 
 .content-wrapper {
@@ -141,7 +142,7 @@ button:focus {
 
 .blog-only-wrapper {
 	width: 100%;
-	margin: 0.5rem;
+	margin: 0.5rem auto;
 }
 
 @media (min-width: 500px) {
@@ -169,8 +170,9 @@ button:focus {
 
 	.blog-container {
 		flex: 2;
-		margin: 0 1rem 1rem;
+		margin: 0 auto 1rem;
 	}
+
  .blog-only-wrapper {
 	 width: 50%;
 	 margin: 0 auto 1rem;
