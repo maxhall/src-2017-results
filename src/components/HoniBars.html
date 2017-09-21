@@ -2,7 +2,7 @@
   <div class="details">
     <div class="details--left">
       <span class="name" style="color:{{mintColor}}">Mint</span>
-      <h2 class="percentage" style="color:{{mintColor}}">{{ mintPercentage }}%</h2>
+      <h2 class="percentage" style="color:{{mintColor}}">{{ mintPercentageText }}%</h2>
       <span class="total sans-light">{{ mintTotal }}</span>
     </div>
     <div class="details--right">
@@ -13,7 +13,7 @@
   </div>
   <div class="bars">
     <span class="heat-bar" style="background-color:{{heatColor}}"></span>
-    <span class="mint-bar" style="width:{{mintPercentage}}%; background-color:{{mintColor}}"></span>
+    <span class="mint-bar" style="width:{{mintPercentageBar}}%; background-color:{{mintColor}}"></span>
     <span class="middle-mark"></span>
   </div>
   <span class="turnout sans-light">{{honiBoothsCounted}}/{{numberOfBooths}} booths counted. {{ honiTurnout * 100 }}% turnout.</span>
@@ -96,9 +96,27 @@
         const mintPercentage = mintTotal / totalCountedVotes;
         return mintPercentage.toFixed(2) * 100;
       },
+      mintPercentageText: mintPercentage => {
+        if (isNaN(mintPercentage)) {
+          return "-";
+        } else {
+          return mintPercentage;
+        }
+      },
+      mintPercentageBar: mintPercentage => {
+        if(isNaN(mintPercentage)) {
+          return "50";
+        } else {
+          return mintPercentage;
+        }
+      },
       heatPercentage: (heatTotal, totalCountedVotes) => {
         const heatPercentage = heatTotal / totalCountedVotes;
-        return heatPercentage.toFixed(2) * 100;
+        if (isNaN(heatPercentage)) {
+          return "-";
+        } else {
+          return heatPercentage.toFixed(2) * 100;
+        }
       }
     }
   }

@@ -18,8 +18,8 @@ const appData = {
 	colors: {
 		'NLS': '#753da6',
 		'Grassroots': '#008938',
-		'SLS': '#235b70',
-		'Mod Libs': '#969696',
+		'SLS': '#e02834',
+		'Mod Libs': '#103466',
 		'Liberals': '#0873a9',
 		'Unity': '#de2b33',
 		'Independent': '#fff000',
@@ -27,7 +27,7 @@ const appData = {
 		'Solidarity': '#ff00f0',
 		'Blank': '#eeeeee',
 		'Mint': '#71d39d',
-		'Heat': '#ed1b24',
+		'Heat': '#ff4c3f',
 	},
 	results: {
 		blog: [
@@ -123,5 +123,5 @@ socket.on('data', function(data){
 	window.app.set({'hasConnection': true});
 	window.app.set({'results': data});
 	window.app.set({'newData': true});
-	//setTimeout(() => {window.app.set({'newData': false})}, 3000);
+	console.log(data);
 });
