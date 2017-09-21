@@ -28,6 +28,7 @@ const appData = {
 		'Blank': '#eeeeee',
 		'Mint': '#71d39d',
 		'Heat': '#ff4c3f',
+		'Switch': '#ffcc32',
 	},
 	results: {
 		blog: [
