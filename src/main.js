@@ -16,19 +16,19 @@ const appData = {
 	newData: false,
 	hasConnection: false,
 	colors: {
-		'NLS': '#753da6',
-		'Grassroots': '#008938',
-		'SLS': '#e02834',
-		'Mod Libs': '#103466',
-		'Liberals': '#0873a9',
-		'Unity': '#de2b33',
-		'Independent': '#fff000',
-		'Socialist Alternative': '#d98a01',
-		'Solidarity': '#ff00f0',
-		'Blank': '#eeeeee',
-		'Mint': '#71d39d',
-		'Heat': '#ff4c3f',
-		'Switch': '#ffcc32',
+	  "Grassroots": "#81c784",
+	  "Independent": "#fff176",
+	  "Labor": "#e57373",
+	  "Liberals": "#42a5f5",
+	  "Mod Libs": "#4fc3f7",
+	  "NLS": "#a1887f",
+	  "SLS": "#ffb74d",
+	  "Socialist Alternative": "#9575cd",
+	  "Solidarity": "#f06292",
+	  "Unity": "#7986cb",
+	  "Mint": "#71d39d",
+	  "Heat": "#ff4c3f",
+	  "Blank": "#eeeeee"
 	},
 	results: {
 		blog: [
@@ -118,7 +118,8 @@ window.app.on('sendTheHeight', event => {
 });
 
 // When any new data is received it's passed down the component chain
-const socket = io('src-2017-results.herokuapp.com');
+//const socket = io('src-2017-results.herokuapp.com');
+const socket = io('localhost:5000');
 
 socket.on('data', function(data){
 	window.app.set({'hasConnection': true});
