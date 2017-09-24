@@ -76,7 +76,7 @@
         pytkaSummary['candidate'] = 'Bella Pytka';
         pytkaSummary['faction'] = 'SLS';
         pytkaSummary['votes'] = Number(summaryObject.pytka);
-        pytkaSummary['percent'] = Number(summaryObject.pytkapercent) * 100;
+        pytkaSummary['percent'] = parseFloat((Number(summaryObject.pytkapercent) * 100).toFixed(2));
         pytkaSummary['color'] = collatedResults.colors['SLS'];
         presResultArray.push(pytkaSummary);
 
@@ -85,7 +85,7 @@
         grantSummary['candidate'] = 'Imogen Grant';
         grantSummary['faction'] = 'Switch';
         grantSummary['votes'] = Number(summaryObject.grant);
-        grantSummary['percent'] = Number(summaryObject.grantpercent) * 100;
+        grantSummary['percent'] = parseFloat((Number(summaryObject.grantpercent) * 100).toFixed(2));
         grantSummary['color'] = collatedResults.colors['Grassroots'];
         presResultArray.push(grantSummary);
 
@@ -94,7 +94,7 @@
         maSummary['candidate'] = 'Brendan Ma';
         maSummary['faction'] = 'Mod Libs';
         maSummary['votes'] = Number(summaryObject.ma);
-        maSummary['percent'] = Number(summaryObject.mapercent) * 100;
+        maSummary['percent'] = parseFloat((Number(summaryObject.mapercent) * 100).toFixed(2));
         maSummary['color'] = collatedResults.colors['Mod Libs'];
         presResultArray.push(maSummary);
 
@@ -103,7 +103,7 @@
         informalSummary['candidate'] = 'Informal';
         informalSummary['faction'] = '-';
         informalSummary['votes'] = Number(summaryObject.informal);
-        informalSummary['percent'] = Number(summaryObject.informalpercent) * 100;
+        informalSummary['percent'] = parseFloat((Number(summaryObject.informalpercent) * 100).toFixed(2));
         informalSummary['color'] = collatedResults.colors['Blank'];
         presResultArray.push(informalSummary);
 
