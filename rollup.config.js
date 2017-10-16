@@ -6,6 +6,7 @@ import uglify from 'rollup-plugin-uglify';
 import { minify } from 'uglify-es';
 import builtins from 'rollup-plugin-node-builtins';
 import globals from 'rollup-plugin-node-globals';
+import json from 'rollup-plugin-json';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -27,12 +28,15 @@ export default {
 			cascade: false
 		}),
 
+		json({
+      preferConst: true
+    }),
+
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
 		// some cases you'll need additional configuration —
 		// consult the documentation for details:
 		// https://github.com/rollup/rollup-plugin-commonjs
-
 		resolve({
 			preferBuiltins: false,
 		}),
