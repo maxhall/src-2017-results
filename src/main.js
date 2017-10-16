@@ -1,8 +1,7 @@
 import App from './App.html';
-import io from 'socket.io-client';
 import pym from 'pym.js';
 
-// Retirement: we import a .json file of the final data and pass it as daata
+// Retirement: we import a .json file of the final data and pass it as data
 // so I can turn the streaming server off
 import retirementData from './frozen-data.json';
 
@@ -11,10 +10,7 @@ const pymChild = new pym.Child({ renderCallback: () => { console.log('pym!');}, 
 pymChild.sendHeight();
 
 /*
- * Retirement planning
- * Once the live blog is no longer used create a json file the exports the full
- * object. Import it here and pass it into the app startup.
- * You might want to remove the socket dependency after this
+ * Retirement: Now we are no longer live, static data is passed to the app
  */
 const appData = {
 	newData: false,
@@ -45,14 +41,4 @@ window.app = new App({
 
 window.app.on('sendTheHeight', event => {
 	pymChild.sendHeight();
-});
-
-// When any new data is received it's passed down the component chain
-const socket = io('src-2017-results.herokuapp.com');
-
-socket.on('data', function(data){
-	window.app.set({'hasConnection': true});
-	window.app.set({'results': data});
-	window.app.set({'newData': true});
-	console.log(data);
 });
